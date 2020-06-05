@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {Grid, Card, Image, Icon} from 'semantic-ui-react'
 
 class Profile extends Component{
+
+    
     render(){
         return(
             <div>
@@ -9,11 +11,11 @@ class Profile extends Component{
                     <Grid.Row stretched>
                     <Grid.Column>
                     <Card centered="true" fluid="true">
-                        <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+                        <Image src={this.props.user.image} wrapped ui={false} />
                         <Card.Content>
-                        <Card.Header>Matthew</Card.Header>
+                        <Card.Header>{this.props.user.name}</Card.Header>
                         <Card.Meta>
-                            <span className='date'>Joined in 2015</span>
+                            <span className='date'>{this.props.user.email}</span>
                         </Card.Meta>
                         <Card.Description>
                             Matthew is a musician living in Nashville.

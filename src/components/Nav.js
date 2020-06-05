@@ -10,8 +10,9 @@ const Nav = (props) => {
                 <Link to="/nfl">NFL</Link>
                 <div className="topnav-right">
                     <Link to="/about">About</Link>
-                    <Link to="/profile">Profile</Link>
-                    <Link to="/login">Login</Link>             
+                    {props.user === null || localStorage.length === 0 ? <Link to="/signup">Signup</Link> : null}
+                    {props.user === null || localStorage.length === 0 ? <Link to="/login">Login</Link> : <Link to="/profile">Profile</Link>}          
+                    {props.user === null || localStorage.length === 0 ? null : <Link to="/login" onClick={props.logout}>Logout</Link>}
                 </div>
             </div>
         </div>
