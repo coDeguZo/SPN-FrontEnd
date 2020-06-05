@@ -57,7 +57,7 @@ class NbaPlayerIndex extends React.Component {
                     <Dropdown placeholder='All Teams' search selection options={teams} onChange={this.onChangeTeams} />
                     </Grid.Column>
                     <Grid.Column>
-                        <h1> NBA </h1>
+                        {/* <h1> NBA </h1> */}
                     </Grid.Column>
                     <Grid.Column>
                     <Search onSearchChange={this.onChangeSearch}/>

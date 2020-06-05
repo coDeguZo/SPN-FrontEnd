@@ -66,3 +66,8 @@
 .topnav-right {
   float: right;
 }
+
+.login-background {
+  background: url(https://media.giphy.com/media/xTiTndwQDH5ZUsfLSE/giphy.gif) no-repeat center center;
+  background-size: cover;
+}

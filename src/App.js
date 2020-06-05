@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import Nav from './components/Nav'
+import Login from './components/Login'
+import Profile from './components/Profile'
 // import Footer from './components/Footer'
 // import { createStore } from 'redux'
 import NbaContainer from './containers/NbaContainer'
@@ -14,7 +16,8 @@ class App extends React.Component {
     Nbateams: [],
     teams: [],
     nbaLeague: [],
-    leagues: []
+    leagues: [],
+    currentUser: null
   }
 
   componentDidMount() {
@@ -49,6 +52,8 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/nba" render={ () => <NbaContainer players={this.state.players} teams={this.state.Nbateams}/>} />
           <Route exact path="/nba/players" render={ () => <NbaPlayerIndex players={this.state.players} teams={this.state.Nbateams} league={this.state.nbaLeague}/>} />
+          <Route exact path="/login" render={ () => <Login/>} />
+          <Route exact path="/profile" render={ () => <Profile/>} />
         </Switch>
       </div>
     );
