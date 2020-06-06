@@ -76,3 +76,17 @@
   background: url(https://media.giphy.com/media/26BRwfbI5gvaH5M9a/giphy.gif) no-repeat center center;
   background-size: cover;
 }
+
+.home-image {
+  height: 600px;
+  width: 1600px;
+  padding-left: 30px;
+}
+
+.home-news-image {
+  padding-left: 50px;
+}
+
+.profile-user-card {
+  position: fixed;
+}

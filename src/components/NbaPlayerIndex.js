@@ -63,7 +63,7 @@ class NbaPlayerIndex extends React.Component {
                     <Search onSearchChange={this.onChangeSearch}/>
                     </Grid.Column>
                 </Grid>
-                <img src={this.props.league.logo_img} />
+                <img src={this.props.league.logo_img} alt="logo"/>
                 {this.state.filteredPlayers.length === 0 ?
                 <Grid relaxed='very' columns={5}>
                 {this.props.players.map(player => {

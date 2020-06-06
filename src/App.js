@@ -4,11 +4,12 @@ import Nav from './components/Nav'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Profile from './containers/ProfileContainer'
+import Home from "./containers/Home"
 // import Footer from './components/Footer'
 // import { createStore } from 'redux'
 import NbaContainer from './containers/NbaContainer'
 import NbaPlayerIndex from './components/NbaPlayerIndex'
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
+import { Route, Switch, Redirect} from 'react-router-dom'
 
 
 class App extends React.Component {
@@ -18,7 +19,8 @@ class App extends React.Component {
     teams: [],
     nbaLeague: [],
     leagues: [],
-    currentUser: null
+    currentUser: null,
+    favoritePlayers: []
   }
 
   componentDidMount() {
@@ -52,6 +54,14 @@ class App extends React.Component {
     .then(user => {
       this.handleLogin(user)
     })
+    fetch("http://localhost:3000/user_players")
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data)
+      let userInfo = data.filter(user_player => this.state.currentUser.id === user_player.user_id)
+      this.setState({ favoritePlayers: userInfo })
+    })
+
     } else {
       console.log("No Token Found")
     }
@@ -67,11 +77,26 @@ class App extends React.Component {
     this.setState({ currentUser: null })
   }
 
+  handleDeleteFavorite = (id) => {
+    fetch(`http://localhost:3000/user_players/${id}`, {
+      method: "DELETE"
+    })
+    // .then(resp => resp.json())
+    // .then(data => {
+    //   let filtered = this.state.favoritePlayers.filter(players => players !== data)
+    //   this.setState({ favoritePlayers: filtered })
+    // })
+  }
+
+
+
   render() {
     return (
       <div className="App">
         <Nav user={this.state.currentUser} logout={this.handleLogout}/>
         <Switch>
+          {/* Home */}
+          <Route exact path="/" render={() => <Home />}/>
           {/* NBA */}
           <Route exact path="/nba" render={ () => <NbaContainer players={this.state.players} teams={this.state.Nbateams}/>} />
           {/* Nba/Players */}
@@ -88,7 +113,7 @@ class App extends React.Component {
           this.state.currentUser === null || localStorage.length === 0 ?
           <Redirect to="/login"/>
           :
-          <Profile user={this.state.currentUser}/>
+          <Profile user={this.state.currentUser} favsPlayers={this.state.favoritePlayers} delete={this.handleDeleteFavorite}/>
           )} />
           {/* SignUp */}
           <Route exact path='/signup' render={ () => (

@@ -1,6 +1,5 @@
 import React from 'react'
-import {Grid, Segment, Header, Form, Image, Input, Checkbox, Button} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
+import {Grid, Segment, Header, Form, Image, Input, Button} from 'semantic-ui-react'
 import swal from 'sweetalert';
 
 
