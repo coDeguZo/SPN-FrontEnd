@@ -4,10 +4,10 @@ import { Card, Image, Button, Header, Modal } from 'semantic-ui-react'
 class NbaPlayer extends React.Component {
 
     render(){
-        const {full_name, player_image, college, height, weight, position, jersey_number, birthdate} = this.props.player
+        const {id, full_name, player_image, college, height, weight, position, jersey_number, birthdate} = this.props.player
         return(
             <div>
-                <Card onClick>
+                <Card>
                     <Image src={player_image} wrapped ui={false}/>
                     <Card.Content>
                         <Card.Header>{full_name} {jersey_number}</Card.Header>
@@ -20,7 +20,7 @@ class NbaPlayer extends React.Component {
                     </Card.Content>
                     <Card.Content extra>
                     <a>
-                    <Button>Follow Player</Button>
+                    <Button onClick={() => this.props.favoritePlayer(id)}>Follow Player</Button>
                     </a>
                     </Card.Content>
                 </Card>

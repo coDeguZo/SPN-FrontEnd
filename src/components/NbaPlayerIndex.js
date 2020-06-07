@@ -1,6 +1,8 @@
 import React from 'react'
 import NbaPlayer from '../components/NbaPlayer'
 import { Grid, Search, Dropdown } from 'semantic-ui-react'
+import swal from 'sweetalert';
+
 
 
 class NbaPlayerIndex extends React.Component {
@@ -37,6 +39,23 @@ class NbaPlayerIndex extends React.Component {
         this.setState({ search: event.target.value })
     }
 
+    favoritePlayer = (id) => {
+        console.log("hit", id)
+        const obj = {
+            user_id: this.props.user.id,
+            player_id: id
+        }
+        fetch("http://localhost:3000/user_players", {
+            method: "POST",
+            headers: {"Content-Type": "application/json", "Accept": "application/json"},
+            body: JSON.stringify(obj)
+        })
+        swal({
+            icon: "success",
+            text: "Followed Player"
+        })
+    }
+
     render(){
         const teams = this.props.teams.map(team => ({
             key: team.name,
@@ -48,7 +67,6 @@ class NbaPlayerIndex extends React.Component {
             text: "All Teams",
             value: "All Teams"
         })
-        console.log(this.props.players)
         return(
             <div>
                 <br />
@@ -69,7 +87,7 @@ class NbaPlayerIndex extends React.Component {
                 {this.props.players.map(player => {
                     return (
                         <Grid.Column>
-                            <NbaPlayer player={player} key={player.id}/>
+                            <NbaPlayer player={player} key={player.id} favoritePlayer={this.favoritePlayer}/>
                         </Grid.Column>
                     )
                 })}
@@ -79,7 +97,7 @@ class NbaPlayerIndex extends React.Component {
                 {this.state.filteredPlayers.map(player => {
                     return (
                         <Grid.Column>
-                            <NbaPlayer player={player} key={player.id}/>
+                            <NbaPlayer player={player} key={player.id} favoritePlayer={this.favoritePlayer}/>
                         </Grid.Column>
                     )
                 })}

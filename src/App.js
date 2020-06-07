@@ -10,6 +10,7 @@ import Home from "./containers/Home"
 import NbaContainer from './containers/NbaContainer'
 import NbaPlayerIndex from './components/NbaPlayerIndex'
 import { Route, Switch, Redirect} from 'react-router-dom'
+import swal from 'sweetalert';
 
 
 class App extends React.Component {
@@ -35,8 +36,8 @@ class App extends React.Component {
     fetch("http://localhost:3000/teams")
     .then(resp => resp.json())
     .then(data => {
-      console.log(data)
-      const teams = data.filter(team => +team.league_id === 33)
+      const teams = data.filter(team => team.sport_title === "NBA" )
+      console.log(teams)
       this.setState({ Nbateams: teams })
       this.setState({ teams: data })
     })
@@ -57,7 +58,6 @@ class App extends React.Component {
     fetch("http://localhost:3000/user_players")
     .then(resp => resp.json())
     .then(data => {
-      console.log(data)
       let userInfo = data.filter(user_player => this.state.currentUser.id === user_player.user_id)
       this.setState({ favoritePlayers: userInfo })
     })
@@ -75,6 +75,20 @@ class App extends React.Component {
   handleLogout = () => {
     localStorage.clear()
     this.setState({ currentUser: null })
+  }
+
+  findUserPlayer = (id) => {
+    fetch("http://localhost:3000/user_players")
+    .then(resp => resp.json())
+    .then(data => data.find(userPlayer => {
+      if (userPlayer.id === id){
+        this.handleDeleteFavorite(userPlayer.id)
+        swal({
+          icon: "info",
+          text: "Player Unfollowed"
+      })
+      }
+    }))
   }
 
   handleDeleteFavorite = (id) => {
@@ -100,7 +114,7 @@ class App extends React.Component {
           {/* NBA */}
           <Route exact path="/nba" render={ () => <NbaContainer players={this.state.players} teams={this.state.Nbateams}/>} />
           {/* Nba/Players */}
-          <Route exact path="/nba/players" render={ () => <NbaPlayerIndex players={this.state.players} teams={this.state.Nbateams} league={this.state.nbaLeague}/>} />
+          <Route exact path="/nba/players" render={ () => <NbaPlayerIndex players={this.state.players} teams={this.state.Nbateams} league={this.state.nbaLeague} user={this.state.currentUser}/>} />
           {/* Login */}
           <Route exact path="/login" render={ () => (
           this.state.currentUser === null || localStorage.length === 0 ? 
@@ -113,7 +127,7 @@ class App extends React.Component {
           this.state.currentUser === null || localStorage.length === 0 ?
           <Redirect to="/login"/>
           :
-          <Profile user={this.state.currentUser} favsPlayers={this.state.favoritePlayers} delete={this.handleDeleteFavorite}/>
+          <Profile user={this.state.currentUser} favsPlayers={this.state.favoritePlayers} delete={this.findUserPlayer}/>
           )} />
           {/* SignUp */}
           <Route exact path='/signup' render={ () => (

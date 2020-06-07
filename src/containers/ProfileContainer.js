@@ -6,7 +6,7 @@ class Profile extends Component{
 
     render(){
         return(
-            <div>
+            <div className="profile">
                 <Grid columns={3} divided>
                     <Grid.Row stretched>
                     <Grid.Column className="profile-user-card">
@@ -38,7 +38,7 @@ class Profile extends Component{
                     <br />
                     Favorite Players:
                     {this.props.favsPlayers.map(user_player => (
-                        <Card centered="true">
+                        <Card key={user_player.id} centered="true">
                             <Card.Content>
                             <Image
                                 floated='right'
