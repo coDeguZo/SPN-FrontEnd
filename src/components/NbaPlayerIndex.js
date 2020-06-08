@@ -39,23 +39,6 @@ class NbaPlayerIndex extends React.Component {
         this.setState({ search: event.target.value })
     }
 
-    favoritePlayer = (id) => {
-        console.log("hit", id)
-        const obj = {
-            user_id: this.props.user.id,
-            player_id: id
-        }
-        fetch("http://localhost:3000/user_players", {
-            method: "POST",
-            headers: {"Content-Type": "application/json", "Accept": "application/json"},
-            body: JSON.stringify(obj)
-        })
-        swal({
-            icon: "success",
-            text: "Followed Player"
-        })
-    }
-
     render(){
         const teams = this.props.teams.map(team => ({
             key: team.name,
@@ -87,7 +70,7 @@ class NbaPlayerIndex extends React.Component {
                 {this.props.players.map(player => {
                     return (
                         <Grid.Column>
-                            <NbaPlayer player={player} key={player.id} favoritePlayer={this.favoritePlayer}/>
+                            <NbaPlayer player={player} key={player.id} favoritePlayer={this.props.favs}/>
                         </Grid.Column>
                     )
                 })}
@@ -97,7 +80,7 @@ class NbaPlayerIndex extends React.Component {
                 {this.state.filteredPlayers.map(player => {
                     return (
                         <Grid.Column>
-                            <NbaPlayer player={player} key={player.id} favoritePlayer={this.favoritePlayer}/>
+                            <NbaPlayer player={player} key={player.id} favoritePlayer={this.props.favs}/>
                         </Grid.Column>
                     )
                 })}

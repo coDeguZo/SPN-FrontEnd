@@ -85,12 +85,15 @@
 
 .home-news-image {
   padding-left: 50px;
+  height: 150px;
 }
 
 .profile-user-card {
   position: fixed;
 }
 
-/* .profile {
-  background-color: grey;
-} */
+.nba-container-carousel {
+  height: 500px;
+  width: 1500px;
+  padding-left: 30px
+}

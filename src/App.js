@@ -55,26 +55,30 @@ class App extends React.Component {
     .then(user => {
       this.handleLogin(user)
     })
+    } else {
+      console.log("No Token Found")
+    }
+  }
+
+  changeUserState = (props) => {
+    this.setState({ currentUser: props })
+  }
+
+  handleLogin = (user) => {
+    // console.log(user)
     fetch("http://localhost:3000/user_players")
     .then(resp => resp.json())
     .then(data => {
       let userInfo = data.filter(user_player => this.state.currentUser.id === user_player.user_id)
       this.setState({ favoritePlayers: userInfo })
     })
-
-    } else {
-      console.log("No Token Found")
-    }
-  }
-
-  handleLogin = (user) => {
-    // console.log(user)
     this.setState({ currentUser: user })
   }
 
   handleLogout = () => {
     localStorage.clear()
     this.setState({ currentUser: null })
+    this.setState({ favoritePlayers: [] })
   }
 
   findUserPlayer = (id) => {
@@ -91,18 +95,37 @@ class App extends React.Component {
     }))
   }
 
+  favoriteNbaPlayer = (id) => {
+    console.log("hit", id)
+    const obj = {
+        user_id: this.state.currentUser.id,
+        player_id: id
+    }
+    fetch("http://localhost:3000/user_players", {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify(obj)
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        this.setState({ favoritePlayers: [...this.state.favoritePlayers, data] })
+    })
+    swal({
+        icon: "success",
+        text: "Followed Player"
+    })
+}
+
   handleDeleteFavorite = (id) => {
     fetch(`http://localhost:3000/user_players/${id}`, {
       method: "DELETE"
     })
-    // .then(resp => resp.json())
-    // .then(data => {
-    //   let filtered = this.state.favoritePlayers.filter(players => players !== data)
-    //   this.setState({ favoritePlayers: filtered })
-    // })
+    .then(resp => resp.json())
+    .then(data => {
+      let filtered = this.state.favoritePlayers.filter(players => players.id !== data.id)
+      this.setState({ favoritePlayers: filtered })
+    })
   }
-
-
 
   render() {
     return (
@@ -114,7 +137,7 @@ class App extends React.Component {
           {/* NBA */}
           <Route exact path="/nba" render={ () => <NbaContainer players={this.state.players} teams={this.state.Nbateams}/>} />
           {/* Nba/Players */}
-          <Route exact path="/nba/players" render={ () => <NbaPlayerIndex players={this.state.players} teams={this.state.Nbateams} league={this.state.nbaLeague} user={this.state.currentUser}/>} />
+          <Route exact path="/nba/players" render={ () => <NbaPlayerIndex players={this.state.players} teams={this.state.Nbateams} league={this.state.nbaLeague} user={this.state.currentUser} favs={this.favoriteNbaPlayer}/>} />
           {/* Login */}
           <Route exact path="/login" render={ () => (
           this.state.currentUser === null || localStorage.length === 0 ? 
@@ -127,14 +150,14 @@ class App extends React.Component {
           this.state.currentUser === null || localStorage.length === 0 ?
           <Redirect to="/login"/>
           :
-          <Profile user={this.state.currentUser} favsPlayers={this.state.favoritePlayers} delete={this.findUserPlayer}/>
+          <Profile user={this.state.currentUser} edit={this.changeUserState} favsPlayers={this.state.favoritePlayers} delete={this.findUserPlayer}/>
           )} />
           {/* SignUp */}
           <Route exact path='/signup' render={ () => (
           this.state.currentUser === null || localStorage.length === 0 ?
           <Signup loginUser={this.handleLogin}/>
           :
-          <Profile user={this.state.currentUser}/>
+          <Profile user={this.state.currentUser} edit={this.changeUserState} favsPlayers={this.state.favoritePlayers} delete={this.findUserPlayer}/>
           )} />
         </Switch>
       </div>

@@ -1,13 +1,25 @@
 import React from 'react'
 import {Grid, Image} from 'semantic-ui-react'
 import Carousel from 'react-bootstrap/Carousel'
+import { Route } from 'react-router-dom'
 
 class Home extends React.Component{
+    state = {
+        news: []
+    }
+
+    componentDidMount(){
+        fetch("https://newsapi.org/v2/everything?domains=espn.com&pageSize=20&apiKey=f44ccf725ca9471596da059a5defc2fc")
+        .then(resp => resp.json())
+        .then( data => (
+            this.setState({ news: data.articles })
+        ))
+    }
 
     render(){
         return(
             <div className="my-carousel">
-                <h1>Welcome To SPM</h1>
+                {/* <h1>Welcome To SPM</h1> */}
                  <Grid divided='vertically'>
                     <Grid.Row columns={1}>
                     <Grid.Column >
@@ -155,23 +167,20 @@ class Home extends React.Component{
                     </Carousel>
                     </Grid.Column>
                     </Grid.Row>
-
+                    {this.state.news.map(article => {
+                    return article.urlToImage !== null && article.content !== "" && article.urlToImage !== "https://a1.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fespn_logos%2Fespn_red.png" ?
                     <Grid.Row columns={2}>
                         <Grid.Column width={3}>
-                            <Image className="home-news-image" src='https://stillmed.olympic.org/media/Images/OlympicOrg/News/2016/09/23/2016-09-23-bolt-thumbnail.jpg' />
-                        </Grid.Column>
-                        <Grid.Column width={3}>
-                            <h1>News Article Goes Here</h1>
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row columns={2}>
-                        <Grid.Column width={3}>
-                            <Image className="home-news-image" src='https://stillmed.olympic.org/media/Images/OlympicOrg/News/2016/09/23/2016-09-23-bolt-thumbnail.jpg' />
+                            <Image className="home-news-image" src={article.urlToImage} />
                         </Grid.Column>
                         <Grid.Column width={10}>
-                            <p> News Article Goes Here: Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text.</p>
+                            <p>{article.content}</p>
+                            <button>Read More</button>
                         </Grid.Column>
                     </Grid.Row>
+                    :
+                    null
+                })}
                 </Grid>
             </div>
         )

@@ -1,8 +1,47 @@
 import React, {Component} from 'react'
-import {Grid, Image, Icon, Button, Card, Segment, Sticky, Rail} from 'semantic-ui-react'
+import {Grid, Image, Icon, Button, Card, Segment, Sticky, Modal, Header, Form} from 'semantic-ui-react'
 // import Card from 'react-bootstrap/Card'
+import swal from 'sweetalert';
 
 class Profile extends Component{
+    state = {
+        name: "",
+        email: "",
+        image: "",
+        password: "",
+        modalOpen: false
+    }
+
+    changeProfileInfoState = (event) => {
+        this.setState({ [event.target.id]: event.target.value })
+    }
+
+    handleOpen = () => this.setState({ modalOpen: true })
+    handleClose = () => this.setState({ modalOpen: false })
+
+    newProfileInfo = (event) => {
+        event.preventDefault()
+        const obj = {
+            name: this.state.name,
+            email: this.state.email,
+            image: this.state.image
+        }
+        // debugger
+        fetch(`http://localhost:3000/users/${this.props.user.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json", "Accept": "application/json"},
+            body: JSON.stringify(obj)
+        })
+        .then(resp => resp.json())
+        .then(data => {
+          // debugger
+          this.props.edit(data)})
+          this.setState({ modalOpen: false })
+          swal({
+            icon: "success",
+            text: "Profile Updated!"
+        })
+    }
 
     render(){
         return(
@@ -20,7 +59,7 @@ class Profile extends Component{
                                         <span className='date'>{this.props.user.email}</span>
                                     </Card.Meta>
                                     <Card.Description>
-                                        Matthew is a musician living in Nashville.
+                                        {this.props.user.name} is a musician living in Nashville.
                                     </Card.Description>
                                     </Card.Content>
                                     <Card.Content extra>
@@ -29,6 +68,40 @@ class Profile extends Component{
                                         22 Friends
                                     </a>
                                     </Card.Content>
+                                    <Modal 
+                                    trigger={<Button onClick={this.handleOpen} >Edit Profile</Button>}
+                                    open={this.state.modalOpen}
+                                    onClose={this.handleClose}
+                                    >
+                                        <Modal.Header>Select a Photo</Modal.Header>
+                                        <Modal.Content image>
+                                        <Image wrapped size='medium' src='/images/avatar/large/rachel.png'/>
+                                        <Modal.Description>
+                                            <Header>Edit Profile Information</Header>
+                                            <Form
+                                            onSubmit={this.newProfileInfo}
+                                            >
+                                                <Form.Field>
+                                                <label>Full Name</label>
+                                                <input id="name" placeholder='Full Name' onChange={this.changeProfileInfoState} required/>
+                                                </Form.Field>
+                                                <Form.Field>
+                                                <label>Email</label>
+                                                <input id="email" placeholder='Email' onChange={this.changeProfileInfoState} required/>
+                                                </Form.Field>
+                                                <Form.Field>
+                                                <label>Profile Image</label>
+                                                <input id="image" placeholder='Profile Image' onChange={this.changeProfileInfoState} required/>
+                                                </Form.Field>
+                                                {/* <Form.Field>
+                                                <label>Password</label>
+                                                <input id="password" placeholder='Password' onChange={this.changeProfileInfo} required/>
+                                                </Form.Field> */}
+                                                <Button type='submit'>Submit</Button>
+                                            </Form>
+                                        </Modal.Description>
+                                        </Modal.Content>
+                                    </Modal>
                                 </Card>
                             </Segment>
                         </Sticky>
