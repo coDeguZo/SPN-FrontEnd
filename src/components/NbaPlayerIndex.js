@@ -1,5 +1,5 @@
 import React from 'react'
-import NbaPlayer from '../components/NbaPlayer'
+import NbaPlayer from './NbaPlayer'
 import { Grid, Search, Dropdown } from 'semantic-ui-react'
 import swal from 'sweetalert';
 

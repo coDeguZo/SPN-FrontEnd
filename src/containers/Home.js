@@ -1,7 +1,8 @@
 import React from 'react'
-import {Grid, Image} from 'semantic-ui-react'
+import {Grid, Image, Button} from 'semantic-ui-react'
 import Carousel from 'react-bootstrap/Carousel'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
+
 
 class Home extends React.Component{
     state = {
@@ -19,38 +20,24 @@ class Home extends React.Component{
     render(){
         return(
             <div className="my-carousel">
-                {/* <h1>Welcome To SPM</h1> */}
+                <h1>Welcome To SPM</h1>
                  <Grid divided='vertically'>
                     <Grid.Row columns={1}>
                     <Grid.Column >
                     <Carousel interval={6000} >
-                        {/* First */}
-                        <Carousel.Item>
-                            <img
-                            className="d-block w-100"
-                            src="https://i.ytimg.com/vi/4CX3e93p9y4/maxresdefault.jpg"
-                            alt="First slide"
-                            className="home-image"
-                            />
-                            <Carousel.Caption>
-                                <h3>First Slide Label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <button>This is a test button</button>
-                            </Carousel.Caption>
-                        </Carousel.Item>
                         {/* Second */}
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src="https://stillmed.olympic.org/media/Images/OlympicOrg/News/2016/09/23/2016-09-23-bolt-thumbnail.jpg"
+                            src={process.env.PUBLIC_URL + '/Curry.jpg'}
                             alt="Second slide"
                             className="home-image"
                             />
-                            <Carousel.Caption>
+                            {/* <Carousel.Caption>
                                 <h3>Second Slide Label</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                 <button>This is a test button</button>
-                            </Carousel.Caption>
+                            </Carousel.Caption> */}
                         </Carousel.Item>
                         {/* Third */}
                         <Carousel.Item>
@@ -60,11 +47,6 @@ class Home extends React.Component{
                             alt="third slide"
                             className="home-image"
                             />
-                            <Carousel.Caption>
-                                <h3>Third Slide Label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <button>This is a test button</button>
-                            </Carousel.Caption>
                         </Carousel.Item>
                         {/* Fourth */}
                         <Carousel.Item>
@@ -74,11 +56,6 @@ class Home extends React.Component{
                             alt="fourth slide"
                             className="home-image"
                             />
-                            <Carousel.Caption>
-                                <h3>Fourth Slide Label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <button>This is a test button</button>
-                            </Carousel.Caption>
                         </Carousel.Item>
                         {/* Fifth */}
                         <Carousel.Item>
@@ -88,11 +65,6 @@ class Home extends React.Component{
                             alt="fifth slide"
                             className="home-image"
                             />
-                            <Carousel.Caption>
-                                <h3>Fifth Slide Label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <button>This is a test button</button>
-                            </Carousel.Caption>
                         </Carousel.Item>
                         {/* Sixth */}
                         <Carousel.Item>
@@ -102,11 +74,6 @@ class Home extends React.Component{
                             alt="sixth slide"
                             className="home-image"
                             />
-                            <Carousel.Caption>
-                                <h3>Sixth Slide Label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <button>This is a test button</button>
-                            </Carousel.Caption>
                         </Carousel.Item>
                         {/* Seventh */}
                         <Carousel.Item>
@@ -116,11 +83,6 @@ class Home extends React.Component{
                             alt="seventh slide"
                             className="home-image"
                             />
-                            <Carousel.Caption>
-                                <h3>Seventh Slide Label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <button>This is a test button</button>
-                            </Carousel.Caption>
                         </Carousel.Item>
                         {/* Eigth */}
                         <Carousel.Item>
@@ -130,11 +92,6 @@ class Home extends React.Component{
                             alt="eighth slide"
                             className="home-image"
                             />
-                            <Carousel.Caption>
-                                <h3>Eigth Slide Label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <button>This is a test button</button>
-                            </Carousel.Caption>
                         </Carousel.Item>
                         {/* Ninth */}
                         <Carousel.Item>
@@ -144,11 +101,6 @@ class Home extends React.Component{
                             alt="ninth slide"
                             className="home-image"
                             />
-                            <Carousel.Caption>
-                                <h3>Ninth Slide Label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <button>This is a test button</button>
-                            </Carousel.Caption>
                         </Carousel.Item>
                         {/* Tenth */}
                         <Carousel.Item>
@@ -158,24 +110,24 @@ class Home extends React.Component{
                             alt="tenth slide"
                             className="home-image"
                             />
-                            <Carousel.Caption>
-                                <h3>Tenth Slide Label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <button>This is a test button</button>
-                            </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>
+                    <h1> Daily Sports News </h1>
                     </Grid.Column>
                     </Grid.Row>
                     {this.state.news.map(article => {
                     return article.urlToImage !== null && article.content !== "" && article.urlToImage !== "https://a1.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fespn_logos%2Fespn_red.png" ?
                     <Grid.Row columns={2}>
-                        <Grid.Column width={3}>
+                        <Grid.Column width={6}>
                             <Image className="home-news-image" src={article.urlToImage} />
                         </Grid.Column>
                         <Grid.Column width={10}>
-                            <p>{article.content}</p>
-                            <button>Read More</button>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <p className="home-news-paragraphs">{article.description}</p>
+                            <Button onClick={() => window.open(article.url)}>Read More</Button>
                         </Grid.Column>
                     </Grid.Row>
                     :

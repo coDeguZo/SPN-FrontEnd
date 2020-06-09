@@ -75,17 +75,22 @@
 .user-signup {
   background: url(https://media.giphy.com/media/26BRwfbI5gvaH5M9a/giphy.gif) no-repeat center center;
   background-size: cover;
-}
+} 
 
 .home-image {
   height: 600px;
-  width: 1600px;
+  width: 1000px;
   padding-left: 30px;
 }
 
 .home-news-image {
   padding-left: 50px;
-  height: 150px;
+  height: 250px;
+}
+
+.home-news-paragraphs{
+  font-size: 25px;
+  text-align: center;
 }
 
 .profile-user-card {
@@ -108,4 +113,8 @@
 
 .nba-carousel-item {
   width: 1095px;
+}
+
+.my-carousel {
+  background-color:white;
 }

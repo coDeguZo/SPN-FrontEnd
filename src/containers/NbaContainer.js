@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {Grid, Image, Table, Segment, Header} from 'semantic-ui-react'
+import {Grid, Image, Table, Segment, Header, GridColumn} from 'semantic-ui-react'
 import Carousel from 'react-bootstrap/Carousel'
 class NbaContainer extends React.Component {
     state = {
@@ -18,7 +18,7 @@ class NbaContainer extends React.Component {
 
     render(){
         return(
-            <div>
+            <div className="nba-container">
                 <Grid divided='vertically'>
                     <Grid.Row columns={2}>
                         <Grid.Column width={5}>
@@ -38,7 +38,7 @@ class NbaContainer extends React.Component {
                                     <Carousel.Caption>
                                         <h3>{article.title}</h3>
                                         <p>{article.content}</p>
-                                        <button>Read More</button>
+                                        <button onClick={() => window.open(article.url)}>Read More</button>
                                     </Carousel.Caption>
                                 </Carousel.Item>
                                 :
@@ -48,80 +48,106 @@ class NbaContainer extends React.Component {
                         </Grid.Column>
                     </Grid.Row>
                     {/* NBA Teams */}
-                    <Grid.Row columns={5}>
+                    {/* <Grid.Row columns={5}>
                         {this.props.teams.map(team => {
                             return <Grid.Column>
                                 <h4>{team.name}</h4>
                                 <img src={team.image} className="nba-home-logo"></img>
                             </Grid.Column>
                         })}
-                    </Grid.Row>
+                    </Grid.Row> */}
                     <Grid.Row columns={2}>
+                        {/* Second Table */}
                         <Grid.Column>
-                            <h1>Standings</h1>
-                            <Table basic='very'>
-                                <Table.Header>
-                                <Table.Row>
-                                    <Table.HeaderCell>Employee</Table.HeaderCell>
-                                    <Table.HeaderCell>Correct Guesses</Table.HeaderCell>
-                                </Table.Row>
-                                </Table.Header>
-
-                                <Table.Body>
-                                <Table.Row>
-                                    <Table.Cell>
-                                    <Header as='h4' image>
-                                        <Image src='/images/avatar/small/lena.png' rounded size='mini' />
-                                        <Header.Content>
-                                        Lena
-                                        <Header.Subheader>Human Resources</Header.Subheader>
-                                        </Header.Content>
-                                    </Header>
-                                    </Table.Cell>
-                                    <Table.Cell>22</Table.Cell>
-                                </Table.Row>
-                                <Table.Row>
-                                    <Table.Cell>
-                                    <Header as='h4' image>
-                                        <Image src='/images/avatar/small/matthew.png' rounded size='mini' />
-                                        <Header.Content>
-                                        Matthew
-                                        <Header.Subheader>Fabric Design</Header.Subheader>
-                                        </Header.Content>
-                                    </Header>
-                                    </Table.Cell>
-                                    <Table.Cell>15</Table.Cell>
-                                </Table.Row>
-                                <Table.Row>
-                                    <Table.Cell>
-                                    <Header as='h4' image>
-                                        <Image src='/images/avatar/small/lindsay.png' rounded size='mini' />
-                                        <Header.Content>
-                                        Lindsay
-                                        <Header.Subheader>Entertainment</Header.Subheader>
-                                        </Header.Content>
-                                    </Header>
-                                    </Table.Cell>
-                                    <Table.Cell>12</Table.Cell>
-                                </Table.Row>
-                                <Table.Row>
-                                    <Table.Cell>
-                                    <Header as='h4' image>
-                                        <Image src='/images/avatar/small/mark.png' rounded size='mini' />
-                                        <Header.Content>
-                                        Mark
-                                        <Header.Subheader>Executive</Header.Subheader>
-                                        </Header.Content>
-                                    </Header>
-                                    </Table.Cell>
-                                    <Table.Cell>11</Table.Cell>
-                                </Table.Row>
-                                </Table.Body>
-                            </Table>
+                            <h1>East Standings</h1>
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Team</th>
+                                <th scope="col">Wins</th>
+                                <th scope="col">Losses</th>
+                                <th scope="col">Win Percentage</th>
+                                <th scope="col">Divison Rank</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                            </table>
                         </Grid.Column>
+                        <Grid.Column>
+                            <h1>West Standings</h1>
+                            <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Team</th>
+                                <th scope="col">Wins</th>
+                                <th scope="col">Losses</th>
+                                <th scope="col">Win Percentage</th>
+                                <th scope="col">Divison Rank</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">Rockets</th>
+                                <td>40</td>
+                                <td>24</td>
+                                <td>0.625</td>
+                                <td>1</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row columns={1}>
+                        {/* Second Table */}
                         <Grid.Column>
                             <h1>Standout Players</h1>
                             <div><Link to='nba/players'><button>Click For All Players</button></Link></div>
+                            <br />
+                            <Grid divided='horizontally'>
+                                   <Grid.Row columns={3}>
+                            {this.props.players.map(player => {
+                                // debugger
+                               return player.full_name === "Carmelo Anthony" || player.full_name === "Zion Williamson" || player.full_name === "Lonzo Ball" ? 
+                                        <div>
+                                            <img src={player.player_image}></img>
+                                            <h3>{player.full_name}</h3>
+                                        </div>
+                                : 
+                                null
+                            })}
+                            </Grid.Row>
+                            </Grid>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
