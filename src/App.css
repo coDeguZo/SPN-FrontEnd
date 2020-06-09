@@ -94,6 +94,18 @@
 
 .nba-container-carousel {
   height: 500px;
-  width: 1500px;
+  width: 900px;
   padding-left: 30px
+}
+
+.nba-table {
+  padding-left: 100px;
+}
+
+.nba-home-logo {
+  height: 100px;
+}
+
+.nba-carousel-item {
+  width: 1095px;
 }

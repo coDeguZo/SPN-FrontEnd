@@ -64,13 +64,13 @@ class NbaPlayerIndex extends React.Component {
                     <Search onSearchChange={this.onChangeSearch}/>
                     </Grid.Column>
                 </Grid>
-                <img src={this.props.league.logo_img} alt="logo"/>
+                {/* <img src={this.props.league.logo_img} alt="logo"/> */}
                 {this.state.filteredPlayers.length === 0 ?
                 <Grid relaxed='very' columns={5}>
                 {this.props.players.map(player => {
                     return (
                         <Grid.Column>
-                            <NbaPlayer player={player} key={player.id} favoritePlayer={this.props.favs}/>
+                            <NbaPlayer player={player} playerTwo={this.props.filteredPlayers} key={player.id} favoritePlayer={this.props.favs}/>
                         </Grid.Column>
                     )
                 })}
@@ -80,7 +80,7 @@ class NbaPlayerIndex extends React.Component {
                 {this.state.filteredPlayers.map(player => {
                     return (
                         <Grid.Column>
-                            <NbaPlayer player={player} key={player.id} favoritePlayer={this.props.favs}/>
+                            <NbaPlayer player={player} playerTwo={this.props.filteredPlayers} key={player.id} favoritePlayer={this.props.favs}/>
                         </Grid.Column>
                     )
                 })}

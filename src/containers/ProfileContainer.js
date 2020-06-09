@@ -49,8 +49,7 @@ class Profile extends Component{
                 <Grid columns={3} divided>
                     <Grid.Row stretched>
                     <Grid.Column className="profile-user-card">
-                    <Sticky active="true">
-                            <Segment>
+                            <Segment style={{position: "fixed"}}>
                                 <Card centered="true" fluid="true" raised="false">
                                     <Image src={this.props.user.image} wrapped ui={false}/>
                                     <Card.Content>
@@ -72,10 +71,11 @@ class Profile extends Component{
                                     trigger={<Button onClick={this.handleOpen} >Edit Profile</Button>}
                                     open={this.state.modalOpen}
                                     onClose={this.handleClose}
+                                    centered={true}
                                     >
                                         <Modal.Header>Select a Photo</Modal.Header>
                                         <Modal.Content image>
-                                        <Image wrapped size='medium' src='/images/avatar/large/rachel.png'/>
+                                        {/* <Image wrapped size='medium' src='/images/avatar/large/rachel.png'/> */}
                                         <Modal.Description>
                                             <Header>Edit Profile Information</Header>
                                             <Form
@@ -104,12 +104,10 @@ class Profile extends Component{
                                     </Modal>
                                 </Card>
                             </Segment>
-                        </Sticky>
                     </Grid.Column>
-                    <Grid.Column>
-                    Favorite Leagues: 
+                    <Grid.Column> 
                     <br />
-                    Favorite Players:
+                    <h1>Favorite Players</h1>
                     {this.props.favsPlayers.map(user_player => (
                         <Card key={user_player.id} centered="true">
                             <Card.Content>
@@ -137,7 +135,31 @@ class Profile extends Component{
                         ))}
                     </Grid.Column>
                     <Grid.Column>
-                    Fantasy Team:  
+                        <br />
+                        <h1>Favorite Teams</h1>
+                        {this.props.favTeams.map(user_team => (
+                        <Card key={user_team.id} centered="true">
+                            <Card.Content>
+                            <Image
+                                // floated='center'
+                                size='small'
+                                src={user_team.team.image}
+                            />
+                            <Card.Header>{user_team.team.name}</Card.Header>
+                            <Card.Description>
+                                <p>Venue: {user_team.team.venue}</p>
+                                <p>League: {user_team.team.market}</p>
+                            </Card.Description>
+                            </Card.Content>
+                            <Card.Content>
+                            <div className='ui two buttons'>
+                                <Button basic color='red' onClick={() => this.props.deleteTeam(parseInt(user_team.id))}>
+                                Unfavorite
+                                </Button>
+                            </div>
+                            </Card.Content>
+                        </Card>
+                        ))}
                     </Grid.Column>
                     </Grid.Row>
               </Grid>

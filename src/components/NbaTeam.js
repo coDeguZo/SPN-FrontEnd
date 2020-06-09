@@ -1,39 +1,32 @@
 import React from 'react'
 import { Card, Image, Button, Header, Modal, Icon } from 'semantic-ui-react'
 
-class NbaPlayer extends React.Component {
-    state = {
-        modalOpen: false
-    }
-
-    handleOpen = () => this.setState({ modalOpen: true })
-    handleClose = () => this.setState({ modalOpen: false })
-
+export default class NbaTeam extends React.Component{ 
     render(){
-        const {id, full_name, player_image, college, height, weight, position, jersey_number, birthdate} = this.props.player
-        // debugger
+        console.log(this.props.team.name)
+        const {id, image, market, name, sport_title, venue} = this.props.team
         return(
             <div>
                 <Card onClick={this.handleOpen}>
-                    <Image src={player_image} wrapped ui={false}/>
+                    <Image src={image} wrapped ui={false}/>
                     <Card.Content>
-                        <Card.Header>{full_name} {jersey_number}</Card.Header>
+                        <Card.Header>{name}</Card.Header>
                     <Card.Meta>
                         <span className='date'></span>
                     </Card.Meta>
                     <Card.Description>
-                        Position: {position}
+                        Location: {market}
                     </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
                     <a>
                         <Icon name='basketball ball' />
-                        NBA Team: {this.props.player.team.name}
+                        League: {sport_title}
                     </a>
                     </Card.Content>
                 </Card>
-                <Button onClick={() => this.props.favoritePlayer(id, full_name)}>Follow Player</Button>
-                <Modal 
+                <Button onClick={() => this.props.favoriteTeam(id, name)}>Follow Team</Button>
+                {/* <Modal 
                     open={this.state.modalOpen}
                     onClose={this.handleClose}>
                 <Modal.Header>Player Details</Modal.Header>
@@ -48,9 +41,8 @@ class NbaPlayer extends React.Component {
                         <p>Birthdate: {birthdate}</p>
                     </Modal.Description>
                     </Modal.Content>
-                </Modal>
+                </Modal> */}
             </div>
         )
     }
 }
-export default NbaPlayer

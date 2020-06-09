@@ -9,11 +9,11 @@ class Home extends React.Component{
     }
 
     componentDidMount(){
-        fetch("https://newsapi.org/v2/everything?domains=espn.com&pageSize=20&apiKey=f44ccf725ca9471596da059a5defc2fc")
+        fetch("https://newsapi.org/v2/everything?domains=espn.com&pageSize=50&apiKey=f44ccf725ca9471596da059a5defc2fc")
         .then(resp => resp.json())
-        .then( data => (
+        .then( data => {
             this.setState({ news: data.articles })
-        ))
+        })
     }
 
     render(){
