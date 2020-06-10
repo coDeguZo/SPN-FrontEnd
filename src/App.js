@@ -98,6 +98,24 @@ class App extends React.Component {
     this.setState({ favoriteTeams: [] })
   }
 
+  deleteProfile = () => {
+    debugger
+    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, {
+        method: "DELETE"
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        localStorage.clear()
+        this.setState({ currentUser: null })
+        this.setState({ favoritePlayers: [] })
+        this.setState({ favoriteTeams: [] })
+        swal({
+            icon: "info",
+            text: "Profile Deleted"
+        })
+    })
+}
+
   findUserPlayer = (id) => {
     fetch("http://localhost:3000/user_players")
     .then(resp => resp.json())
@@ -214,7 +232,8 @@ handleDeleteFavoriteTeam = (id) => {
   render() {
     return (
       <div className="App">
-        <Nav user={this.state.currentUser} logout={this.handleLogout}/>
+        {/* Nav Bar */}
+        <Nav user={this.state.currentUser} logout={this.handleLogout} league={this.state.nbaLeague}/>
         <Switch>
           {/* Home */}
           <Route exact path="/" render={() => <Home />}/>
@@ -238,7 +257,7 @@ handleDeleteFavoriteTeam = (id) => {
           this.state.currentUser === null || localStorage.length === 0 ?
           <Redirect to="/login"/>
           :
-          <Profile user={this.state.currentUser} edit={this.changeUserState} favsPlayers={this.state.favoritePlayers} favTeams={this.state.favoriteTeams} delete={this.findUserPlayer} deleteTeam={this.handleDeleteFavoriteTeam}/>
+          <Profile user={this.state.currentUser} edit={this.changeUserState} deleteProfile={this.deleteProfile} favsPlayers={this.state.favoritePlayers} favTeams={this.state.favoriteTeams} delete={this.findUserPlayer} deleteTeam={this.handleDeleteFavoriteTeam}/>
           )} />
           {/* SignUp */}
           <Route exact path='/signup' render={ () => (

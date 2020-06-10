@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Image, Button} from 'semantic-ui-react'
+import {Grid, Image, Button, Segment} from 'semantic-ui-react'
 import Carousel from 'react-bootstrap/Carousel'
 import { Route, Link } from 'react-router-dom'
 
@@ -18,26 +18,26 @@ class Home extends React.Component{
     }
 
     render(){
+        let news = this.state.news.slice(Math.max(this.state.news.length - 3, 3))
         return(
-            <div className="my-carousel">
-                <h1>Welcome To SPM</h1>
+            // className="my-carousel"
+            <div>
                  <Grid divided='vertically'>
-                    <Grid.Row columns={1}>
+                    <Grid.Row columns={2}>
                     <Grid.Column >
                     <Carousel interval={6000} >
                         {/* Second */}
                         <Carousel.Item>
+                        {/* <Carousel.Caption>
+                                <h3>Second Slide Label</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </Carousel.Caption> */}
                             <img
                             className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/Curry.jpg'}
                             alt="Second slide"
                             className="home-image"
                             />
-                            {/* <Carousel.Caption>
-                                <h3>Second Slide Label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <button>This is a test button</button>
-                            </Carousel.Caption> */}
                         </Carousel.Item>
                         {/* Third */}
                         <Carousel.Item>
@@ -52,7 +52,7 @@ class Home extends React.Component{
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src="https://talksport.com/wp-content/uploads/sites/5/2018/09/GettyImages-987922082.jpg?strip=all&w=960&quality=100"
+                            src={process.env.PUBLIC_URL + '/Lebron-Shot.jpg'}
                             alt="fourth slide"
                             className="home-image"
                             />
@@ -61,7 +61,7 @@ class Home extends React.Component{
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src="https://pbs.twimg.com/media/D6ajU4-WkAIb8L8.jpg"
+                            src={process.env.PUBLIC_URL + '/Lebron-Wade.jpg'}
                             alt="fifth slide"
                             className="home-image"
                             />
@@ -70,7 +70,7 @@ class Home extends React.Component{
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src="https://piximus.net/media/30553/the-greatest-sports-illustrated-photographs-ever-14.jpg"
+                            src={process.env.PUBLIC_URL + '/Kyrie.jpeg'}
                             alt="sixth slide"
                             className="home-image"
                             />
@@ -79,7 +79,7 @@ class Home extends React.Component{
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src="https://bloximages.chicago2.vip.townnews.com/timeswv.com/content/tncms/assets/v3/editorial/c/de/cdeb118b-796e-54f3-9eb7-b5b1eef6926b/53d552b841905.image.jpg"
+                            src={process.env.PUBLIC_URL + '/Derrick-Rose.jpg'}
                             alt="seventh slide"
                             className="home-image"
                             />
@@ -88,7 +88,7 @@ class Home extends React.Component{
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src="https://ichef.bbci.co.uk/onesport/cps/480/cpsprodpb/A91E/production/_110249234_andymurraywinswimbledon.jpg"
+                            src={process.env.PUBLIC_URL + '/Lebron.jpg'}
                             alt="eighth slide"
                             className="home-image"
                             />
@@ -97,7 +97,7 @@ class Home extends React.Component{
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src="https://usatftw.files.wordpress.com/2019/09/gty-1142669861.jpg"
+                            src={process.env.PUBLIC_URL + '/Rings.jpg'}
                             alt="ninth slide"
                             className="home-image"
                             />
@@ -106,17 +106,119 @@ class Home extends React.Component{
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src="https://blogs.coventry.ac.uk/uncovered/wp-content/uploads/sites/7/2016/04/shutterstock_122214214.png"
+                            src={process.env.PUBLIC_URL + '/MJ-Winning.jpg'}
+                            alt="tenth slide"
+                            className="home-image"
+                            />
+                        </Carousel.Item>
+                        {/* Eleven */}
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={process.env.PUBLIC_URL + '/new_1.jpg'}
+                            alt="tenth slide"
+                            className="home-image"
+                            />
+                        </Carousel.Item>
+                        {/* Twelve */}
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={process.env.PUBLIC_URL + '/new_2.jpg'}
+                            alt="tenth slide"
+                            className="home-image"
+                            />
+                        </Carousel.Item>
+                        {/* Thirteen */}
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={process.env.PUBLIC_URL + '/new_3.jpg'}
+                            alt="tenth slide"
+                            className="home-image"
+                            />
+                        </Carousel.Item>
+                        {/* FourTeen */}
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={process.env.PUBLIC_URL + '/new_4.jpeg'}
+                            alt="tenth slide"
+                            className="home-image"
+                            />
+                        </Carousel.Item>
+                        {/* Fifteen */}
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={process.env.PUBLIC_URL + '/new_5.jpeg'}
+                            alt="tenth slide"
+                            className="home-image"
+                            />
+                        </Carousel.Item>
+                        {/* Sixteen */}
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={process.env.PUBLIC_URL + '/new_6.png'}
+                            alt="tenth slide"
+                            className="home-image"
+                            />
+                        </Carousel.Item>
+                        {/* Seventeen */}
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={process.env.PUBLIC_URL + '/new_7.jpg'}
+                            alt="tenth slide"
+                            className="home-image"
+                            />
+                        </Carousel.Item>
+                        {/* Eighteen */}
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={process.env.PUBLIC_URL + '/new_8.jpeg'}
+                            alt="tenth slide"
+                            className="home-image"
+                            />
+                        </Carousel.Item>
+                        {/* Nineteen */}
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={process.env.PUBLIC_URL + '/Dream-Team.jpg'}
                             alt="tenth slide"
                             className="home-image"
                             />
                         </Carousel.Item>
                     </Carousel>
-                    <h1> Daily Sports News </h1>
+                    </Grid.Column>
+                    {/* <Image src="https://dypdvfcjkqkg2.cloudfront.net/large/2579549-3774.png" size="large"/> */}
+                    <Grid.Column>
+                    <div>
+                    <h1 className="spn-daily-news">ⓈⓅⓃ Daily News</h1>
+                    </div>
+                    <Segment>
+                        <Grid>
+                            {news.map(article => 
+                            article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ? 
+                            <Grid.Row>
+                                <Grid.Column>
+                                    <h4><strong>{article.title}</strong></h4>
+                                    <Image src={article.urlToImage} size="small" className="daily-news-image" centered="true" onClick={() => window.open(article.url)}/>
+                                    <p>{article.description}</p>
+                                </Grid.Column>
+                            </Grid.Row>
+                            :
+                            null
+                            )}
+                        </Grid>
+                    </Segment>
                     </Grid.Column>
                     </Grid.Row>
                     {this.state.news.map(article => {
-                    return article.urlToImage !== null && article.content !== "" && article.urlToImage !== "https://a1.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fespn_logos%2Fespn_red.png" ?
+                    return article.urlToImage !== null && article.content !== "" && article.urlToImage !== "https://a1.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fespn_logos%2Fespn_red.png" || article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ?
                     <Grid.Row columns={2}>
                         <Grid.Column width={6}>
                             <Image className="home-news-image" src={article.urlToImage} />
@@ -126,6 +228,7 @@ class Home extends React.Component{
                             <br />
                             <br />
                             <br />
+                            <h3><strong>{article.title}</strong></h3>
                             <p className="home-news-paragraphs">{article.description}</p>
                             <Button onClick={() => window.open(article.url)}>Read More</Button>
                         </Grid.Column>

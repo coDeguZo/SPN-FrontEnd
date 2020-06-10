@@ -72,14 +72,23 @@
   background-size: cover;
 }
 
+.signup-font {
+  font-size: 85px;
+}
+
 .user-signup {
   background: url(https://media.giphy.com/media/26BRwfbI5gvaH5M9a/giphy.gif) no-repeat center center;
   background-size: cover;
 } 
 
+.profile-user-image{
+  height: 465px;
+  width: 460px;
+}
+
 .home-image {
   height: 600px;
-  width: 1000px;
+  width: 100%;
   padding-left: 30px;
 }
 
@@ -89,7 +98,15 @@
 }
 
 .home-news-paragraphs{
-  font-size: 25px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.spn-daily-news {
+  text-align: center;
+}
+
+.daily-news-image{
   text-align: center;
 }
 
@@ -111,10 +128,21 @@
   height: 100px;
 }
 
-.nba-carousel-item {
+/* .nba-carousel-item {
   width: 1095px;
-}
+} */
 
 .my-carousel {
   background-color:white;
+}
+
+.about-background {
+  background: url("https://i.ytimg.com/vi/pB7P7OqCpqo/maxresdefault.jpg") no-repeat center center;
+  background-size: cover;
+  color: white;
+}
+
+.about-user-image {
+  height: 500px;
+  width: 400px;
 }

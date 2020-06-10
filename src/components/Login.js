@@ -52,8 +52,9 @@ class Login extends React.Component{
             <div className="login-background">
                 <Grid textAlign='center' style={{ height: '100vh'}} verticalAlign='middle' className="user-login">
                 <Grid.Column style={{ maxWidth: 450 }}>
-                    <Header as='h2' color='teal' textAlign='center'>
-                    <Image src='https://dypdvfcjkqkg2.cloudfront.net/large/2579549-3774.png' className="login-image"/> Log-in to your User Profile
+                    <Header color='teal' textAlign='center'>
+                    <h1 className="signup-font">ⓈⓅⓃ</h1>
+                    {/* <h1>Welcome Back</h1> */}
                     </Header>
                 <br/>
                     <Form

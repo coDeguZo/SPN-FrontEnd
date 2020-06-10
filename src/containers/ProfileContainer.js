@@ -9,15 +9,18 @@ class Profile extends Component{
         email: "",
         image: "",
         password: "",
-        modalOpen: false
+        modalEditOpen: false,
+        modalDeleteOpen: false
     }
 
     changeProfileInfoState = (event) => {
         this.setState({ [event.target.id]: event.target.value })
     }
 
-    handleOpen = () => this.setState({ modalOpen: true })
-    handleClose = () => this.setState({ modalOpen: false })
+    handleEditOpen = () => this.setState({ modalEditOpen: true })
+    handleEditClose = () => this.setState({ modalEditOpen: false })
+    handleDeleteOpen = () => this.setState({ modalDeleteOpen: true })
+    handleDeleteClose = () => this.setState({ modalDeleteOpen: false })
 
     newProfileInfo = (event) => {
         event.preventDefault()
@@ -51,7 +54,7 @@ class Profile extends Component{
                     <Grid.Column className="profile-user-card">
                             <Segment style={{position: "fixed"}}>
                                 <Card centered="true" fluid="true" raised="false">
-                                    <Image src={this.props.user.image} wrapped ui={false}/>
+                                    <Image src={this.props.user.image} wrapped ui={false} className="profile-user-image"/>
                                     <Card.Content>
                                     <Card.Header>{this.props.user.name}</Card.Header>
                                     <Card.Meta>
@@ -62,15 +65,12 @@ class Profile extends Component{
                                     </Card.Description>
                                     </Card.Content>
                                     <Card.Content extra>
-                                    <a>
-                                        <Icon name='user' />
-                                        22 Friends
-                                    </a>
                                     </Card.Content>
+                                    {/* Edit Profile */}
                                     <Modal 
-                                    trigger={<Button onClick={this.handleOpen} >Edit Profile</Button>}
-                                    open={this.state.modalOpen}
-                                    onClose={this.handleClose}
+                                    trigger={<Button onClick={this.handleEditOpen} >Edit Profile</Button>}
+                                    open={this.state.modalEditOpen}
+                                    onClose={this.handleEditClose}
                                     centered={true}
                                     >
                                         <Modal.Header>Select a Photo</Modal.Header>
@@ -101,6 +101,28 @@ class Profile extends Component{
                                             </Form>
                                         </Modal.Description>
                                         </Modal.Content>
+                                    </Modal>
+                                    {/* Delete Profile */}
+                                    <Modal 
+                                    trigger={<Button onClick={this.handleDeleteOpen} >Delete Profile</Button>}
+                                    open={this.state.modalDeleteOpen}
+                                    onClose={this.handleDeleteClose}
+                                    centered={true}
+                                    >
+                                        <Modal.Header>Delete Profile</Modal.Header>
+                                        <Modal.Content>
+                                        <p>
+                                            Are you sure you want to delete your profile?  We'll be sad to see you go!
+                                        </p>
+                                        </Modal.Content>
+                                        <Modal.Actions>
+                                        <Button onClick={this.handleDeleteClose} color='red'>
+                                            <Icon name='remove' /> No
+                                        </Button>
+                                        <Button onClick={this.props.deleteProfile} color='green'>
+                                            <Icon name='checkmark' /> Yes
+                                        </Button>
+                                        </Modal.Actions>
                                     </Modal>
                                 </Card>
                             </Segment>

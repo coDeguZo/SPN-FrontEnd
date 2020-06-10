@@ -43,8 +43,8 @@ class Signup extends React.Component{
             <div className="user-signup"> 
             <Grid textAlign='center' style={{ height: '100vh'}} verticalAlign='middle' >
                 <Grid.Column style={{ maxWidth: 450 }}>
-                    <Header as='h2' color='teal' textAlign='center'>
-                    <Image src='https://dypdvfcjkqkg2.cloudfront.net/large/2579549-3774.png' /> Sign Up Your As New User!
+                    <Header as='h1' color='teal' textAlign='center'>
+                    <h1 className="signup-font">ⓈⓅⓃ</h1>
                     </Header>
                     <Form 
                     onSubmit={this.handleSubmit}
