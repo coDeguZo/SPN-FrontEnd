@@ -61,14 +61,14 @@ class Profile extends Component{
                                         <span className='date'>{this.props.user.email}</span>
                                     </Card.Meta>
                                     <Card.Description>
-                                        {this.props.user.name} is a musician living in Nashville.
+                                        {this.props.user.name} loves playing basketball and soccer.
                                     </Card.Description>
                                     </Card.Content>
                                     <Card.Content extra>
                                     </Card.Content>
                                     {/* Edit Profile */}
                                     <Modal 
-                                    trigger={<Button onClick={this.handleEditOpen} >Edit Profile</Button>}
+                                    trigger={<button type="button" class="btn btn-outline-success" id="profile-button" onClick={this.handleEditOpen} >Edit Profile</button>}
                                     open={this.state.modalEditOpen}
                                     onClose={this.handleEditClose}
                                     centered={true}
@@ -104,7 +104,7 @@ class Profile extends Component{
                                     </Modal>
                                     {/* Delete Profile */}
                                     <Modal 
-                                    trigger={<Button onClick={this.handleDeleteOpen} >Delete Profile</Button>}
+                                    trigger={<button type="button" class="btn btn-outline-danger" id="profile-button" onClick={this.handleDeleteOpen} >Delete Profile</button>}
                                     open={this.state.modalDeleteOpen}
                                     onClose={this.handleDeleteClose}
                                     centered={true}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {Grid, Image, Table, Segment, Header, GridColumn} from 'semantic-ui-react'
+import {Grid, Image, Table, Segment, Button} from 'semantic-ui-react'
 import Carousel from 'react-bootstrap/Carousel'
 class NbaContainer extends React.Component {
     state = {
@@ -22,12 +22,18 @@ class NbaContainer extends React.Component {
         // debugger
         return(
             <div className="nba-container">
+                 <Segment>
+                    <h1 className="spn-nba-news">NBA<img src={this.props.league.logo_img} className="nba-image"></img> News</h1>
+                    {/* <Image src={process.env.PUBLIC_URL + '/SPN.png'} centered className="spn-daily-news"/> */}
+                </Segment>
                 <Grid divided='vertically'>
                     <Grid.Row columns={2}>
                         {/* <Grid.Column width={5}>
                             <Image src={this.props.league.logo_img} />
                         </Grid.Column> */}
                         <Grid.Column >
+                            <br />
+                            <h1> NBA News Stories </h1>
                         <Carousel interval={6000} className="nba-carousel-item">
                         {this.state.news.map(article => (
                             article.urlToImage !== null ?
@@ -55,6 +61,7 @@ class NbaContainer extends React.Component {
                             </div> */}
                             <Segment>
                                 <Grid>
+                                    <h3 centered >Top Stories:</h3>
                                     {news.map(article => 
                                     article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ? 
                                     <Grid.Row>
@@ -62,6 +69,7 @@ class NbaContainer extends React.Component {
                                             <h4><strong>{article.title}</strong></h4>
                                             <Image src={article.urlToImage} size="small" className="daily-news-image" centered="true" onClick={() => window.open(article.url)}/>
                                             {/* <p>{article.description}</p> */}
+                                            <hr className="divider hr-md-left-0"/>
                                         </Grid.Column>
                                     </Grid.Row>
                                     :
@@ -71,15 +79,50 @@ class NbaContainer extends React.Component {
                             </Segment>
                         </Grid.Column>
                     </Grid.Row>
-                    {/* NBA Teams */}
-                    {/* <Grid.Row columns={5}>
-                        {this.props.teams.map(team => {
-                            return <Grid.Column>
-                                <h4>{team.name}</h4>
-                                <img src={team.image} className="nba-home-logo"></img>
-                            </Grid.Column>
-                        })}
-                    </Grid.Row> */}
+                    {/* Team Players */}
+                    <Grid.Row columns={1}>
+                        <Grid.Column>
+                            <h1>Top NBA Players</h1>
+                            <br />
+                            <Grid divided='horizontally' centered>
+                                   <Grid.Row columns={3}>
+                            {this.props.players.map(player => {
+                                // debugger
+                               return player.full_name === "Carmelo Anthony" || player.full_name === "Zion Williamson" || player.full_name === "Anthony Davis" || player.full_name === "LeBron James" || player.full_name === "Damian Lillard" ? 
+                                        <div>
+                                            <img src={player.player_image}></img>
+                                            <h3>{player.full_name}</h3>
+                                        </div>
+                                : 
+                                null
+                            })}
+                            </Grid.Row>
+                            <div><Link to='nba-players'><Button>Click For All Players</Button></Link></div>
+                            </Grid>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row columns={1}>
+                        {/* Second Table */}
+                        <Grid.Column>
+                            <h1>Top NBA Teams</h1>
+                            <br />
+                            <Grid divided='horizontally' centered>
+                                   <Grid.Row columns={3}>
+                            {this.props.teams.map(team => {
+                                // debugger
+                               return team.name === "Lakers" || team.name === "Pelicans" || team.name === "Bucks" || team.name === "Clippers" || team.name === "Rockets" ? 
+                                        <div>
+                                            <img className="nba-team-logo-nba-container" src={team.image}></img>
+                                            <h3>{team.name}</h3>
+                                        </div>
+                                : 
+                                null
+                            })}
+                            </Grid.Row>
+                            <div><Link to='nba-teams'><Button>Click For All Teams</Button></Link></div>
+                            </Grid>
+                        </Grid.Column>
+                    </Grid.Row>
                     <Grid.Row columns={2}>
                         {/* Second Table */}
                         <Grid.Column>
@@ -323,28 +366,6 @@ class NbaContainer extends React.Component {
                                 </tr>
                             </tbody>
                             </table>
-                        </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row columns={1}>
-                        {/* Second Table */}
-                        <Grid.Column>
-                            <h1>Standout Players</h1>
-                            <div><Link to='nba/players'><button>Click For All Players</button></Link></div>
-                            <br />
-                            <Grid divided='horizontally'>
-                                   <Grid.Row columns={3}>
-                            {this.props.players.map(player => {
-                                // debugger
-                               return player.full_name === "Carmelo Anthony" || player.full_name === "Zion Williamson" || player.full_name === "Lonzo Ball" ? 
-                                        <div>
-                                            <img src={player.player_image}></img>
-                                            <h3>{player.full_name}</h3>
-                                        </div>
-                                : 
-                                null
-                            })}
-                            </Grid.Row>
-                            </Grid>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

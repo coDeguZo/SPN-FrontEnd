@@ -104,6 +104,14 @@
 
 .spn-daily-news {
   text-align: center;
+  font-size: 50px;
+  color: black;
+}
+
+.spn-nba-news {
+  text-align: center;
+  font-size: 50px;
+  color: black;
 }
 
 .daily-news-image{
@@ -124,8 +132,28 @@
   padding-left: 100px;
 }
 
+.nba-image {
+  height:80px;
+}
+
 .nba-home-logo {
   height: 100px;
+}
+
+.home-page-color {
+  background-color: whitesmoke;
+}
+
+.nba-container {
+  background-color: whitesmoke;
+}
+
+.nba-team-logo-nba-container {
+  height: 250px;
+}
+
+.nba-team-index{
+  background-color: whitesmoke;
 }
 
 /* .nba-carousel-item {
@@ -146,3 +174,20 @@
   height: 500px;
   width: 400px;
 }
+
+.edit-button {
+  color: red;
+}
+
+
+#profile-button:active {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+/* .footer{
+  sticky-top
+} */
+
+/* .footer {
+  padding-top: 100px;
+} */

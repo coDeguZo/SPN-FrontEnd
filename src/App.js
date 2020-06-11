@@ -6,7 +6,7 @@ import Signup from './components/Signup'
 import Profile from './containers/ProfileContainer'
 import Home from "./containers/Home"
 import About from './components/About'
-// import Footer from './components/Footer'
+import Footer from './components/Footer'
 // import { createStore } from 'redux'
 import NbaContainer from './containers/NbaContainer'
 import NbaPlayerIndex from './components/NbaPlayerIndex'
@@ -267,6 +267,7 @@ handleDeleteFavoriteTeam = (id) => {
           <Profile user={this.state.currentUser} edit={this.changeUserState} favsPlayers={this.state.favoritePlayers} favTeams={this.state.favoriteTeams} delete={this.findUserPlayer} deleteTeam={this.handleDeleteFavoriteTeam}/>
           )} />
         </Switch>
+        <Footer />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import NbaPlayer from './NbaPlayer'
-import { Grid, Search, Dropdown } from 'semantic-ui-react'
+import { Grid, Search, Dropdown, Segment } from 'semantic-ui-react'
 import swal from 'sweetalert';
 
 
@@ -25,7 +25,6 @@ class NbaPlayerIndex extends React.Component {
     }
 
     onChangeSearch = (event) => {
-        const filter = this.props.players.filter(player => player.full_name.includes(this.state.search))
         // if (this.state.search.length === 0){
         //     this.setState({ players: this.props.players })
         // } else if (this.state.search.length > 0 && this.state.filteredPlayers.length === 0){
@@ -34,9 +33,17 @@ class NbaPlayerIndex extends React.Component {
         //     const filterPlayerss = this.props.filteredPlayers.filter(player => player.full_name.includes(this.state.search))
         //     this.setState({ filteredPlayers: filterPlayerss })
         // }
-        this.setState({ players: filter })
-        this.setState({ filteredPlayers: filter })
-        this.setState({ search: event.target.value })
+        if (this.state.filteredPlayers.length === []){
+            let filter = this.props.players.filter(player => player.full_name.includes(this.state.search)) 
+            this.setState({ players: filter })
+            this.setState({ filteredPlayers: filter })
+            this.setState({ search: event.target.value })
+        } else {
+            let filter = this.state.filteredPlayers.filter(player => player.full_name.includes(this.state.search))
+            this.setState({ players: filter })
+            this.setState({ filteredPlayers: filter })
+            this.setState({ search: event.target.value })
+        }
     }
 
     render(){
@@ -52,6 +59,10 @@ class NbaPlayerIndex extends React.Component {
         })
         return(
             <div>
+                 <Segment>
+                    <h1 className="spn-nba-news">NBA<img src={this.props.league.logo_img} className="nba-image"></img> Players</h1>
+                    {/* <Image src={process.env.PUBLIC_URL + '/SPN.png'} centered className="spn-daily-news"/> */}
+                </Segment>
                 <br />
                 <Grid relaxed='very' columns={3}>
                     <Grid.Column>

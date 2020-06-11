@@ -21,10 +21,16 @@ class Home extends React.Component{
         let news = this.state.news.slice(Math.max(this.state.news.length - 3, 3))
         return(
             // className="my-carousel"
-            <div>
+            <div class="home-page-color">
+                <Segment>
+                    <h1 className="spn-daily-news">ⓈⓅⓃ Daily News</h1>
+                    {/* <Image src={process.env.PUBLIC_URL + '/SPN.png'} centered className="spn-daily-news"/> */}
+                </Segment>
+                <br />
                  <Grid divided='vertically'>
                     <Grid.Row columns={2}>
                     <Grid.Column >
+                        <br />
                     <Carousel interval={6000} >
                         {/* Second */}
                         <Carousel.Item>
@@ -196,9 +202,6 @@ class Home extends React.Component{
                     </Grid.Column>
                     {/* <Image src="https://dypdvfcjkqkg2.cloudfront.net/large/2579549-3774.png" size="large"/> */}
                     <Grid.Column>
-                    <div>
-                    <h1 className="spn-daily-news">ⓈⓅⓃ Daily News</h1>
-                    </div>
                     <Segment>
                         <Grid>
                             {news.map(article => 
@@ -208,6 +211,7 @@ class Home extends React.Component{
                                     <h4><strong>{article.title}</strong></h4>
                                     <Image src={article.urlToImage} size="small" className="daily-news-image" centered="true" onClick={() => window.open(article.url)}/>
                                     <p>{article.description}</p>
+                                    <hr className="dividers hr-md-left-0"/>
                                 </Grid.Column>
                             </Grid.Row>
                             :
@@ -222,6 +226,11 @@ class Home extends React.Component{
                     <Grid.Row columns={2}>
                         <Grid.Column width={6}>
                             <Image className="home-news-image" src={article.urlToImage} />
+                            {article.author !== null ? 
+                            <p>By: {article.author}</p>
+                            :
+                            <p>By: Matt Lowry</p>
+                            }
                         </Grid.Column>
                         <Grid.Column width={10}>
                             <br />
