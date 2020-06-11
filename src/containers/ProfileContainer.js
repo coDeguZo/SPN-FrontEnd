@@ -49,6 +49,10 @@ class Profile extends Component{
     render(){
         return(
             <div className="profile">
+                <Segment>
+                    <h1 className="spn-daily-news">Profile Page</h1>
+                    {/* <Image src={process.env.PUBLIC_URL + '/SPN.png'} centered className="spn-daily-news"/> */}
+                </Segment>
                 <Grid columns={3} divided>
                     <Grid.Row stretched>
                     <Grid.Column className="profile-user-card">

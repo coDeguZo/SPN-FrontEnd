@@ -23,8 +23,9 @@ class About extends React.Component{
                         <Grid.Column textAlign="left">
                         <br />
                         <br />
-                        <h2>Pupose of ⓈⓅⓃ</h2>
-                        <p4>SPN was created as a way for users to find sports news for users!</p4>
+                        <h1>Pupose of ⓈⓅⓃ</h1>
+                        <hr className="dividers hr-md-left-0"/>
+                        <p4>SPN was created as a way for users to read their favorite Sports News</p4>
                         {/* Need To Get To 4 More Tags */}
                         </Grid.Column>
                     </Grid.Row>

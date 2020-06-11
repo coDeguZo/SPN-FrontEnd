@@ -236,7 +236,7 @@ handleDeleteFavoriteTeam = (id) => {
         <Nav user={this.state.currentUser} logout={this.handleLogout} league={this.state.nbaLeague}/>
         <Switch>
           {/* Home */}
-          <Route exact path="/" render={() => <Home />}/>
+          <Route exact path="/" render={() => <Home user={this.state.currentUser}/>}/>
           {/* NBA */}
           <Route exact path="/nba" render={ () => <NbaContainer players={this.state.players} teams={this.state.Nbateams} league={this.state.nbaLeague} favs={this.state.favoritePlayers}/>} />
           {/* Nba/Players */}
@@ -267,7 +267,7 @@ handleDeleteFavoriteTeam = (id) => {
           <Profile user={this.state.currentUser} edit={this.changeUserState} favsPlayers={this.state.favoritePlayers} favTeams={this.state.favoriteTeams} delete={this.findUserPlayer} deleteTeam={this.handleDeleteFavoriteTeam}/>
           )} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

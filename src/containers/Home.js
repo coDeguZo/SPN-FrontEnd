@@ -1,8 +1,8 @@
 import React from 'react'
-import {Grid, Image, Button, Segment} from 'semantic-ui-react'
+import {Grid, Image, Button, Segment, Icon} from 'semantic-ui-react'
 import Carousel from 'react-bootstrap/Carousel'
 import { Route, Link } from 'react-router-dom'
-
+import HomeNews from '../components/HomeNews'
 
 class Home extends React.Component{
     state = {
@@ -16,6 +16,7 @@ class Home extends React.Component{
             this.setState({ news: data.articles })
         })
     }
+
 
     render(){
         let news = this.state.news.slice(Math.max(this.state.news.length - 3, 3))
@@ -233,13 +234,7 @@ class Home extends React.Component{
                             }
                         </Grid.Column>
                         <Grid.Column width={10}>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <h3><strong>{article.title}</strong></h3>
-                            <p className="home-news-paragraphs">{article.description}</p>
-                            <Button onClick={() => window.open(article.url)}>Read More</Button>
+                            <HomeNews article={article} key={article.title} user={this.props.user}/>
                         </Grid.Column>
                     </Grid.Row>
                     :
