@@ -63,7 +63,7 @@ class NbaContainer extends React.Component {
                                 <Grid>
                                     <h3 centered >Top Stories:</h3>
                                     {news.map(article => 
-                                    article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ? 
+                                    // article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ? 
                                     <Grid.Row>
                                         <Grid.Column>
                                             <h4><strong>{article.title}</strong></h4>
@@ -72,8 +72,8 @@ class NbaContainer extends React.Component {
                                             <hr className="divider hr-md-left-0"/>
                                         </Grid.Column>
                                     </Grid.Row>
-                                    :
-                                    null
+                                    // :
+                                    // null
                                     )}
                                 </Grid>
                             </Segment>

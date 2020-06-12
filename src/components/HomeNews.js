@@ -29,15 +29,23 @@ class HomeNews extends React.Component {
         .then(resp => resp.json())
         .then(data => {
             this.setState({ userBookmarks: data })
-            this.state.userBookmarks.find(article => {
-                if (article.title === this.props.article.title){
-                    this.setState({bookmarked: true})
-                }
-            })
+            if (this.props.user !== null){
+                this.state.userBookmarks.find(article => {
+                    // debugger
+                    if (article.title === this.props.article.title && this.props.user.id === parseInt(article.user_id)){
+                        this.setState({bookmarked: true})
+                 }
+            })} 
+            else {
+               this.setState({bookmarked: false})
+            }
         })
     }
 
     createBookmark = () => {
+    
+    if (this.props.user !== null){
+        if (this.state.bookmarked === false) {
         const obj = {
             author: this.props.article.author,
             content: this.props.article.content,
@@ -62,14 +70,44 @@ class HomeNews extends React.Component {
                 icon: "success",
                 text: "Bookmarked Article"
             })
+        } 
+        })
+    } } else {
+        swal({
+            icon: "info",
+            text: "Must Be Signed In To Bookmark Article!"
+        })
+    }
+    }
+
+    deleteBookmark = (title) => {
+        if (this.props.user !== null){
+            swal({
+                icon: "info",
+                text: "Unbookmarking Under Construction"
+            })
+            // const id = this.state.userBookmarks.find(article => {
+            //     if (article.title === title) {
+            //         return article.id
+            // }})
+            //  console.log(id)
+            // fetch(`http://localhost:3000/user_bookmarks/${id.id}`, {
+            //     method: "DELETE"
+            // })
+            // .then(resp => resp.json())
+            // .then(data => {
+            //     this.setState({ bookmarked: !this.state.bookmarked})
+            //     swal({
+            //         icon: "info",
+            //         text: "Article No Longer Bookmarked"
+            //     })
+            // })
         } else {
             swal({
                 icon: "info",
-                text: "Article No Longer Bookmarked"
+                text: "Must Be Signed In To Bookmark Article!"
             })
         }
-        })
-
     }
 
     render(){
@@ -79,7 +117,7 @@ class HomeNews extends React.Component {
                     {this.state.bookmarked === false ?
                     <Button floated="right" onClick={this.createBookmark}><Icon name="bookmark outline"/>Bookmark Article</Button>
                     :
-                    <Button floated="right" onClick={this.createBookmark}><Icon name="bookmark"/>Bookmark Article</Button>
+                    <Button floated="right" onClick={() => this.deleteBookmark(title)}><Icon name="bookmark"/>Bookmark Article</Button>
                     }
                     <br />
                     <br />

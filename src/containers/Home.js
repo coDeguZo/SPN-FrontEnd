@@ -205,6 +205,7 @@ class Home extends React.Component{
                     <Grid.Column>
                     <Segment>
                         <Grid>
+                            <h4> Top Stories: </h4>
                             {news.map(article => 
                             article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ? 
                             <Grid.Row>
