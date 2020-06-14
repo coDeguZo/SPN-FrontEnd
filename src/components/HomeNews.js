@@ -111,7 +111,12 @@ class HomeNews extends React.Component {
     }
 
     render(){
-        const {urlToImage, title, description, url, author} = this.props.article
+        const {urlToImage, title, description, url, author, publishedAt} = this.props.article
+        // let timeChange = publishedAt.toLocaleTimeString('en-US')
+        // debugger
+
+        let date = Date.parse(publishedAt)
+        let newDate = Date(date).slice(0, 15)
         return(
             <div>
                     {this.state.bookmarked === false ?
@@ -123,6 +128,7 @@ class HomeNews extends React.Component {
                     <br />
                     <br />
                     <h3><strong>{title}</strong></h3>
+                    <p>Published: {newDate}</p>
                     <p className="home-news-paragraphs">{description}</p>
                     <Button onClick={() => window.open(url)}>Read More</Button>
             </div>

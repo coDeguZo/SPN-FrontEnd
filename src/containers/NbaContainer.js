@@ -32,8 +32,8 @@ class NbaContainer extends React.Component {
                             <Image src={this.props.league.logo_img} />
                         </Grid.Column> */}
                         <Grid.Column >
-                            <br />
-                            <h1> NBA News Stories </h1>
+                            <h1 className="top-story-headline-home"> <strong>NBA News Stories</strong> </h1>
+                            <hr className="dividers hr-md-left-0"/>
                         <Carousel interval={6000} className="nba-carousel-item">
                         {this.state.news.map(article => (
                             article.urlToImage !== null ?
@@ -60,8 +60,9 @@ class NbaContainer extends React.Component {
                             <h1 className="spn-daily-news">ⓈⓅⓃ NBA News</h1>
                             </div> */}
                             <Segment>
+                            <h4 className="top-story-headline-home"> <strong>Top Stories</strong> </h4>
+                            <hr className="dividers hr-md-left-0"/>
                                 <Grid>
-                                    <h3 centered >Top Stories:</h3>
                                     {news.map(article => 
                                     // article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ? 
                                     <Grid.Row>

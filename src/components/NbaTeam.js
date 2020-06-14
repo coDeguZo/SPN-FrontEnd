@@ -1,7 +1,16 @@
 import React from 'react'
 import { Card, Image, Button, Header, Modal, Icon } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 export default class NbaTeam extends React.Component{ 
+    state = {
+        modalOpen: false
+    }
+
+    handleOpen = () => this.setState({ modalOpen: true })
+    handleClose = () => this.setState({ modalOpen: false })
+
+
     render(){
         console.log(this.props.team.name)
         const {id, image, market, name, sport_title, venue} = this.props.team
@@ -26,22 +35,21 @@ export default class NbaTeam extends React.Component{
                     </Card.Content>
                 </Card>
                 <Button onClick={() => this.props.favoriteTeam(id, name)}>Follow Team</Button>
-                {/* <Modal 
+                <Modal 
                     open={this.state.modalOpen}
                     onClose={this.handleClose}>
-                <Modal.Header>Player Details</Modal.Header>
+                <Modal.Header>Team Details</Modal.Header>
                     <Modal.Content image>
-                    <Image wrapped size='medium' src={player_image} />
+                    <Image wrapped size='medium' src={image} />
                     <Modal.Description>
-                        <Header>{full_name} {jersey_number}</Header>
-                        <p>College: {college}</p>
-                        <p>Position: {position}</p>
-                        <p>Height: {height}</p>
-                        <p>Weight: {weight}</p>
-                        <p>Birthdate: {birthdate}</p>
+                        <Header>{name}</Header>
+                        <p>Venue: {venue}</p>
+                        <p>Market: {market}</p>
+                        <p>League: {sport_title}</p>
+                        <Link to={"/nba-team-" + name}> {name} Team Page</Link>
                     </Modal.Description>
                     </Modal.Content>
-                </Modal> */}
+                </Modal>
             </div>
         )
     }

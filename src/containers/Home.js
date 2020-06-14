@@ -6,7 +6,8 @@ import HomeNews from '../components/HomeNews'
 
 class Home extends React.Component{
     state = {
-        news: []
+        news: [],
+        topHeadlines: []
     }
 
     componentDidMount(){
@@ -15,11 +16,18 @@ class Home extends React.Component{
         .then( data => {
             this.setState({ news: data.articles })
         })
+
+        fetch("https://newsapi.org/v2/top-headlines?sources=espn&pageSize=5&apiKey=f44ccf725ca9471596da059a5defc2fc")
+        .then(resp => resp.json())
+        .then(data => {
+            this.setState({ topHeadlines: data.articles })
+        })
     }
 
 
     render(){
-        let news = this.state.news.slice(Math.max(this.state.news.length - 3, 3))
+        let news = this.state.topHeadlines.slice(0, 3)
+        // console.log(news)
         return(
             // className="my-carousel"
             <div class="home-page-color">
@@ -31,7 +39,7 @@ class Home extends React.Component{
                  <Grid divided='vertically'>
                     <Grid.Row columns={2}>
                     <Grid.Column >
-                        <br />
+                        
                     <Carousel interval={6000} >
                         {/* Second */}
                         <Carousel.Item>
@@ -204,8 +212,9 @@ class Home extends React.Component{
                     {/* <Image src="https://dypdvfcjkqkg2.cloudfront.net/large/2579549-3774.png" size="large"/> */}
                     <Grid.Column>
                     <Segment>
+                    <h4 className="top-story-headline-home"> <strong>Top Stories</strong> </h4>
+                    <hr className="dividers hr-md-left-0"/>
                         <Grid>
-                            <h4> Top Stories: </h4>
                             {news.map(article => 
                             article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ? 
                             <Grid.Row>

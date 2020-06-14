@@ -87,7 +87,7 @@
 }
 
 .home-image {
-  height: 600px;
+  height: 738px;
   width: 100%;
   padding-left: 30px;
 }
@@ -104,6 +104,10 @@
 
 .home-page-bookmark {
   text-align: right;
+}
+
+.top-story-headline-home {
+  float: center;
 }
 
 .spn-daily-news {
@@ -127,7 +131,7 @@
 }
 
 .nba-container-carousel {
-  height: 500px;
+  height: 573px;
   width: 900px;
   padding-left: 30px
 }
