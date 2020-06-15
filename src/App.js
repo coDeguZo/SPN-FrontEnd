@@ -12,6 +12,7 @@ import NbaContainer from './containers/NbaContainer'
 import NbaPlayerIndex from './components/NbaPlayerIndex'
 import NbaTeamsIndex from './components/NbaTeamsIndex'
 import NbaTeamPage from './components/NbaTeamPage'
+import VideoContainer from './containers/VideoContainer'
 import { Route, Switch, Redirect} from 'react-router-dom'
 import swal from 'sweetalert';
 
@@ -267,6 +268,7 @@ handleDeleteFavoriteTeam = (id) => {
           :
           <Profile user={this.state.currentUser} edit={this.changeUserState} favsPlayers={this.state.favoritePlayers} favTeams={this.state.favoriteTeams} delete={this.findUserPlayer} deleteTeam={this.handleDeleteFavoriteTeam}/>
           )} />
+          {/* Team Pages */}
           {this.state.teams.map(team => {
             // debugger
             return (
@@ -275,6 +277,10 @@ handleDeleteFavoriteTeam = (id) => {
               )} />
             )
           })}
+          {/* Video Container */}
+          <Route exact path="/highlights" render={() => {
+            return <VideoContainer /> 
+          }}/>
         </Switch>
         {/* <Footer /> */}
       </div>
