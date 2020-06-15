@@ -10,7 +10,7 @@ const Nav = (props) => {
                 <Link to="/nba">NBA</Link>
                 <Link to="/nba-teams">Teams</Link>
                 <Link to="/nba-players">Players</Link>
-                {props.user === null || localStorage.length === 0 ? null : <Link to="/highlights">Sports Highlights</Link>}
+                {props.user === null || localStorage.length === 0 ? null : <Link to="/highlights">Sports Media</Link>}
                 <div className="topnav-right">
                     <Link to="/about">About</Link>
                     {props.user === null || localStorage.length === 0 ? <Link to="/signup">Signup</Link> : null}
