@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import {Grid, Image, Icon, Button, Card, Segment, Sticky, Modal, Header, Form} from 'semantic-ui-react'
+import {Grid, Image, Icon, Button, Card, Segment, Sticky, Modal, Header, Form, GridColumn} from 'semantic-ui-react'
 // import Card from 'react-bootstrap/Card'
+import Bookmarks from '../components/Bookmarks'
 import swal from 'sweetalert';
 
 class Profile extends Component{
@@ -10,7 +11,17 @@ class Profile extends Component{
         image: "",
         password: "",
         modalEditOpen: false,
-        modalDeleteOpen: false
+        modalDeleteOpen: false,
+        bookmarks: []
+    }
+
+    componentDidMount(){
+        fetch("http://localhost:3000/user_bookmarks")
+        .then(resp => resp.json())
+        .then(data => {
+          let filtered = data.filter(bookmark => bookmark.user.id === this.props.user.id)
+          this.setState({bookmarks: filtered})
+        })
     }
 
     changeProfileInfoState = (event) => {
@@ -46,37 +57,70 @@ class Profile extends Component{
         })
     }
 
+    deleteBookmark = (title) => {
+        if (this.props.user !== null){
+            swal({
+                icon: "info",
+                text: "Article No Longer Bookmarked"
+            })
+            const id = this.state.bookmarks.find(article => {
+                if (article.title === title) {
+                    return article.id
+            }})
+             console.log(id)
+            fetch(`http://localhost:3000/user_bookmarks/${id.id}`, {
+                method: "DELETE"
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                let filtered = this.state.bookmarks.filter(bookmark => bookmark.title !== title)
+                this.setState({ bookmarks: filtered })
+                swal({
+                    icon: "info",
+                    text: "Article No Longer Bookmarked"
+                })
+            })
+        } else {
+            swal({
+                icon: "info",
+                text: "Must Be Signed In To Bookmark Article!"
+            })
+        }
+    }
+
+
     render(){
         return(
-            <div className="profile">
+            <div className="profile profile-background">
                 {/* <Segment>
                     <h1 className="spn-daily-news">Profile Page</h1>
                 </Segment> */}
                 <Grid columns={3} divided>
                     <Grid.Row stretched>
                     <Grid.Column className="profile-user-card">
-                            <Segment style={{position: "fixed"}}>
-                                <Card centered="true" fluid="true" raised="false">
+                            <Segment style={{position: "fixed", zIndex:10}}>
+                                <Card className="profile-edit-button" centered="true" fluid="true" raised="false">
                                     <Image src={this.props.user.image} wrapped ui={false} className="profile-user-image"/>
                                     <Card.Content>
                                     <Card.Header>{this.props.user.name}</Card.Header>
                                     <Card.Meta>
                                         <span className='date'>{this.props.user.email}</span>
                                     </Card.Meta>
-                                    <Card.Description>
+                                    {/* <Card.Description>
                                         {this.props.user.name} loves playing basketball and soccer.
-                                    </Card.Description>
+                                    </Card.Description> */}
                                     </Card.Content>
                                     <Card.Content extra>
                                     </Card.Content>
                                     {/* Edit Profile */}
                                     <Modal 
-                                    trigger={<button type="button" class="btn btn-outline-success" id="profile-button" onClick={this.handleEditOpen} >Edit Profile</button>}
+                                    trigger={<button type="button" className="btn btn-outline-success" id="profile-button" onClick={this.handleEditOpen} >Edit Profile</button>}
                                     open={this.state.modalEditOpen}
                                     onClose={this.handleEditClose}
                                     centered={true}
+                                    // style={{height: 200}}
                                     >
-                                        <Modal.Header>Select a Photo</Modal.Header>
+                                        {/* <Modal.Header>Select a Photo</Modal.Header> */}
                                         <Modal.Content image>
                                         {/* <Image wrapped size='medium' src='/images/avatar/large/rachel.png'/> */}
                                         <Modal.Description>
@@ -100,7 +144,7 @@ class Profile extends Component{
                                                 <label>Password</label>
                                                 <input id="password" placeholder='Password' onChange={this.changeProfileInfo} required/>
                                                 </Form.Field> */}
-                                                <Button type='submit'>Submit</Button>
+                                                <Button className="profile-edit-button" type='submit'>Submit</Button>
                                             </Form>
                                         </Modal.Description>
                                         </Modal.Content>
@@ -130,9 +174,28 @@ class Profile extends Component{
                                 </Card>
                             </Segment>
                     </Grid.Column>
+                    {/* Second Column */}
                     <Grid.Column> 
                     <br />
                     <h1>Favorite Players</h1>
+                    {/* Favorite Players Ternary */}
+                    {this.props.favsPlayers.length === 0 ?
+                    <Card centered="true">
+                    <Card.Content>
+                    <Image
+                        // floated='center'
+                        size='large'
+                        src="https://www.ctvnews.ca/polopoly_fs/1.4644391.1571407649!/httpImage/image.jpg_gen/derivatives/landscape_1020/image.jpg"
+                    />
+                        <Card.Description>
+                            <h1> No Favorite Players </h1>
+                        </Card.Description>
+                        </Card.Content>
+                        <Card.Content>
+                        </Card.Content>
+                    </Card>
+                    :
+                    <div>
                     {this.props.favsPlayers.map(user_player => (
                         <Card key={user_player.id} centered="true">
                             <Card.Content>
@@ -158,10 +221,32 @@ class Profile extends Component{
                             </Card.Content>
                         </Card>
                         ))}
+                    </div>
+                    }
                     </Grid.Column>
+                    <hr className="dividers hr-md-left-0"/>
+                    {/* Column Three */}
                     <Grid.Column>
                         <br />
                         <h1>Favorite Teams</h1>
+                        {/* Tenary for Favorite Players Or Not */}
+                        {this.props.favTeams.length === 0 ?
+                        <Card centered="true">
+                        <Card.Content>
+                        <Image
+                            // floated='center'
+                            size='big'
+                            src="https://9b16f79ca967fd0708d1-2713572fef44aa49ec323e813b06d2d9.ssl.cf2.rackcdn.com/1140x_a10-7_cTC/20190108mfpinesports11-10-1548879899.jpg"
+                        />
+                            <Card.Description>
+                                <h1> No Followed Teams </h1>
+                            </Card.Description>
+                            </Card.Content>
+                            <Card.Content>
+                            </Card.Content>
+                        </Card>
+                        :
+                        <div>
                         {this.props.favTeams.map(user_team => (
                         <Card key={user_team.id} centered="true">
                             <Card.Content>
@@ -185,7 +270,43 @@ class Profile extends Component{
                             </Card.Content>
                         </Card>
                         ))}
+                        </div>
+                        }
                     </Grid.Column>
+                    </Grid.Row>
+                    {/* Bookmark Group */}
+                    <Grid.Row className="profile-row-bookmarks">
+                        <div className="padding-bookmarks">
+                            <h1> <u>Bookmarked Articles</u> </h1>
+                            {this.state.bookmarks.length === 0 ?
+                            <Segment>
+                            <Grid>
+                                <Grid.Row columns={2}>
+                                    <Grid.Column >
+                                        <img className="profile-news-image" src="https://s.hdnux.com/photos/76/01/54/16259844/3/rawImage.jpg" ></img>
+                                    </Grid.Column>
+                                    <Grid.Column>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <h1> Empty Gym - No BookMarks</h1>
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+                            </Segment>
+                            :
+                            <div>
+                            {this.state.bookmarks.map(mark => {
+                                return(
+                                    <div>
+                                        <Bookmarks mark={mark} key={mark.id} unBookmark={this.deleteBookmark}/>
+                                    </div>
+                                ) 
+                            })}
+                            </div>
+                            }
+                        </div>
                     </Grid.Row>
               </Grid>
             </div>

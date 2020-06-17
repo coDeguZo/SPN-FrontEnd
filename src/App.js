@@ -29,7 +29,8 @@ class App extends React.Component {
     favoriteTeams: [],
     alreadyFollowed: [],
     displayed: 0,
-    filteredPlayers: []
+    filteredPlayers: [],
+    bookmarked: []
   }
 
   componentDidMount() {
@@ -68,6 +69,13 @@ class App extends React.Component {
     } else {
       console.log("No Token Found")
     }
+
+    fetch("http://localhost:3000/user_bookmarks")
+        .then(resp => resp.json())
+        .then(data => {
+          // debugger
+          this.setState({bookmarked: data})
+        })
   }
 
   changeUserState = (props) => {
@@ -235,16 +243,18 @@ handleDeleteFavoriteTeam = (id) => {
     return (
       <div className="App">
         {/* Nav Bar */}
-        <Nav user={this.state.currentUser} logout={this.handleLogout} league={this.state.nbaLeague}/>
+        <Nav user={this.state.currentUser} logout={this.handleLogout} league={this.state.nbaLeague} teams={this.state.Nbateams}/>
+        <br />
+        <div className="main-container">
         <Switch>
           {/* Home */}
           <Route exact path="/" render={() => <Home user={this.state.currentUser}/>}/>
           {/* NBA */}
           <Route exact path="/nba" render={ () => <NbaContainer players={this.state.players} teams={this.state.Nbateams} league={this.state.nbaLeague} favs={this.state.favoritePlayers}/>} />
           {/* Nba/Players */}
-          <Route exact path="/nba-players" render={ () => <NbaPlayerIndex players={this.state.players} filtered={this.state.filteredPlayers} teams={this.state.Nbateams} league={this.state.nbaLeague} user={this.state.currentUser} favs={this.favoriteNbaPlayer}/>} />
+          <Route exact path="/nba/players" render={ () => <NbaPlayerIndex players={this.state.players} filtered={this.state.filteredPlayers} teams={this.state.Nbateams} league={this.state.nbaLeague} user={this.state.currentUser} favs={this.favoriteNbaPlayer}/>} />
           {/* NBA/Teams */}
-          <Route exact path="/nba-teams" render={() => <NbaTeamsIndex players={this.state.players} teams={this.state.Nbateams} league={this.state.nbaLeague} user={this.state.currentUser} favs={this.favoriteNbaTeam}/>} />
+          <Route exact path="/nba/teams" render={() => <NbaTeamsIndex players={this.state.players} teams={this.state.Nbateams} league={this.state.nbaLeague} user={this.state.currentUser} favs={this.favoriteNbaTeam}/>} />
           {/* Login */}
           <Route exact path="/login" render={ () => (
           this.state.currentUser === null || localStorage.length === 0 ? 
@@ -259,20 +269,20 @@ handleDeleteFavoriteTeam = (id) => {
           this.state.currentUser === null || localStorage.length === 0 ?
           <Redirect to="/login"/>
           :
-          <Profile user={this.state.currentUser} edit={this.changeUserState} deleteProfile={this.deleteProfile} favsPlayers={this.state.favoritePlayers} favTeams={this.state.favoriteTeams} delete={this.findUserPlayer} deleteTeam={this.handleDeleteFavoriteTeam}/>
+          <Profile user={this.state.currentUser} edit={this.changeUserState} deleteProfile={this.deleteProfile} favsPlayers={this.state.favoritePlayers} favTeams={this.state.favoriteTeams} delete={this.findUserPlayer} deleteTeam={this.handleDeleteFavoriteTeam} bookmarks={this.state.bookmarked}/>
           )} />
           {/* SignUp */}
           <Route exact path='/signup' render={ () => (
           this.state.currentUser === null || localStorage.length === 0 ?
           <Signup loginUser={this.handleLogin}/>
           :
-          <Profile user={this.state.currentUser} edit={this.changeUserState} favsPlayers={this.state.favoritePlayers} favTeams={this.state.favoriteTeams} delete={this.findUserPlayer} deleteTeam={this.handleDeleteFavoriteTeam}/>
+          <Profile user={this.state.currentUser} edit={this.changeUserState} favsPlayers={this.state.favoritePlayers} favTeams={this.state.favoriteTeams} delete={this.findUserPlayer} deleteTeam={this.handleDeleteFavoriteTeam} bookmarks={this.state.bookmarked}/>
           )} />
           {/* Team Pages */}
           {this.state.teams.map(team => {
             // debugger
             return (
-              <Route exact path={"/nba-team-" + team.name} render={() => (
+              <Route exact path={"/nba/teams/" + team.name} render={() => (
                 <NbaTeamPage team={team}/>
               )} />
             )
@@ -282,6 +292,7 @@ handleDeleteFavoriteTeam = (id) => {
             return <VideoContainer /> 
           }}/>
         </Switch>
+        </div>
         {/* <Footer /> */}
       </div>
     );

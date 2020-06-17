@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { Card, Image, Icon } from 'semantic-ui-react'
 
 class NbaTeamPagePlayer extends Component {
+
     render(){
         const {birthdate, college, full_name, height, jersey_number, league, player_image, weight, team_draft_id, position} = this.props.player
         return(

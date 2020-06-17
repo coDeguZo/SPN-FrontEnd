@@ -69,7 +69,7 @@ class NbaContainer extends React.Component {
                                         <Grid.Column>
                                             <h4><strong>{article.title}</strong></h4>
                                             <Image src={article.urlToImage} size="small" className="daily-news-image" centered="true" onClick={() => window.open(article.url)}/>
-                                            {/* <p>{article.description}</p> */}
+                                            <p>{article.description}</p>
                                             <hr className="divider hr-md-left-0"/>
                                         </Grid.Column>
                                     </Grid.Row>
@@ -98,7 +98,7 @@ class NbaContainer extends React.Component {
                                 null
                             })}
                             </Grid.Row>
-                            <div><Link to='nba-players'><Button>Click For All Players</Button></Link></div>
+                            <div><Link to='nba/players'><Button>Click For All Players</Button></Link></div>
                             </Grid>
                         </Grid.Column>
                     </Grid.Row>
@@ -120,7 +120,7 @@ class NbaContainer extends React.Component {
                                 null
                             })}
                             </Grid.Row>
-                            <div><Link to='nba-teams'><Button>Click For All Teams</Button></Link></div>
+                            <div><Link to='nba/teams'><Button>Click For All Teams</Button></Link></div>
                             </Grid>
                         </Grid.Column>
                     </Grid.Row>

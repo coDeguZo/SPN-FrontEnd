@@ -58,7 +58,7 @@ class NbaPlayerIndex extends React.Component {
             value: "All Teams"
         })
         return(
-            <div>
+            <div className="nba-player-index">
                  <Segment>
                     <h1 className="spn-nba-news">NBA<img src={this.props.league.logo_img} className="nba-image"></img> Players</h1>
                     {/* <Image src={process.env.PUBLIC_URL + '/SPN.png'} centered className="spn-daily-news"/> */}

@@ -1,4 +1,5 @@
 .App {
+  height: 100%;
   text-align: center;
 }
 
@@ -41,7 +42,8 @@
 .topnav {
   overflow: hidden;
   background-color: #333;
-  height: 100px;
+  min-height: 100px;
+  z-index: 15;
 }
 
 .topnav a {
@@ -67,7 +69,60 @@
   float: right;
 }
 
+.main-container{
+  height: calc(100vh - 100px)
+}
+
+.dropdown-teams {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 100000;
+  margin-top: 100px;
+  width: 1300px;
+  flex-wrap: wrap;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown-teams:hover .dropdown-content {
+  display: flex;
+}
+
+/* .dropdown-teams .team-dropdown {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+} */
+
+
+/*  */
+
 .login-background {
+  margin-top: -22px;
   background: url(https://media.giphy.com/media/xTiTndwQDH5ZUsfLSE/giphy.gif) no-repeat center center;
   background-size: cover;
 }
@@ -77,14 +132,44 @@
 }
 
 .user-signup {
+  margin-top: -22px;
   background: url(https://media.giphy.com/media/26BRwfbI5gvaH5M9a/giphy.gif) no-repeat center center;
   background-size: cover;
 } 
+
+.profile {
+  /* max-height: 200px; */
+}
+
+.profile-background{
+  background-color: whitesmoke;
+  /* max-height: 200px; */
+}
 
 .profile-user-image{
   height: 465px;
   width: 460px;
 }
+
+.padding-bookmarks{
+  margin-left: 504px;
+  /* width: 200px; */
+}
+
+.profile-news-image{
+  height: 250px;
+  width: 600px;
+  /* padding-left: 50px; */
+}
+
+.profile-edit-button{
+  z-index: 10;
+}
+
+.profile-row-bookmarks{
+  width: 100px;
+}
+
 
 .home-image {
   height: 738px;
@@ -131,8 +216,13 @@
 }
 
 .nba-container-carousel {
-  height: 573px;
+  height: 750px;
   width: 900px;
+  padding-left: 30px
+}
+
+.nba-page-carousel{
+  height: 515px;
   padding-left: 30px
 }
 
@@ -149,10 +239,12 @@
 }
 
 .home-page-color {
+  margin-top: -21px;
   background-color: whitesmoke;
 }
 
 .nba-container {
+  margin-top: -22px;
   background-color: whitesmoke;
 }
 
@@ -161,6 +253,17 @@
 }
 
 .nba-team-index{
+  margin-top: -22px;
+  background-color: whitesmoke;
+}
+
+.nba-player-index{
+  margin-top: -22px;
+  background-color: whitesmoke;
+}
+
+.nba-team-page{
+  margin-top: -22px;
   background-color: whitesmoke;
 }
 
@@ -173,6 +276,7 @@
 }
 
 .about-background {
+  margin-top: -22px;
   background: url("https://i.ytimg.com/vi/pB7P7OqCpqo/maxresdefault.jpg") no-repeat center center;
   background-size: cover;
   color: white;
@@ -187,12 +291,12 @@
   color: red;
 }
 
-
 #profile-button:active {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
   }
 
 .video-container{
+  margin-top: -22px;
   background-color: whitesmoke;
 }
 
@@ -204,10 +308,6 @@
   color: white;
 }
 
-/* .nba-team-page-loader-gif{
-
-} */
-
 /* .footer{
   sticky-top
 } */
@@ -216,3 +316,14 @@
   padding-top: 100px;
 } */
 
+.ui.modal.transition.visible.active{
+  /* display: flex !important; */
+  /* height: 200px; */
+  /* margin: auto !important; */
+  margin-left: 18% ;
+  margin-right: 50%;
+  height: 50%;
+  margin-top: 10%;
+  margin-bottom: 25%;
+  /* justify-content: flex-end !important; */
+}

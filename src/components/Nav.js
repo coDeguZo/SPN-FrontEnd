@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {Dropdown} from 'semantic-ui-react'
+import {Image} from 'semantic-ui-react'
 
 const Nav = (props) => {
     return (
@@ -8,8 +8,15 @@ const Nav = (props) => {
             <div className="topnav">
                 <Link to="/">ⓈⓅⓃ</Link>
                 <Link to="/nba">NBA</Link>
-                <Link to="/nba-teams">Teams</Link>
-                <Link to="/nba-players">Players</Link>
+                <div className="dropdown-teams">
+                    <Link to="/nba/teams" className="team-dropdown">Teams <i className="fa fa-caret-down"></i></Link>
+                    <div class="dropdown-content">
+                        {props.teams.map(team => {
+                            return <Link to={"/nba/teams/" + team.name}><Image size="mini" src={team.image}/>{team.name}</Link>
+                        })}
+                    </div>
+                </div>
+                <Link to="/nba/players">Players</Link>
                 {props.user === null || localStorage.length === 0 ? null : <Link to="/highlights">Sports Media</Link>}
                 <div className="topnav-right">
                     <Link to="/about">About</Link>

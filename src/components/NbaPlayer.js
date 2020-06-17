@@ -32,7 +32,7 @@ class NbaPlayer extends React.Component {
                     </a>
                     </Card.Content>
                 </Card>
-                <Button onClick={() => this.props.favoritePlayer(id, full_name)}>Follow Player</Button>
+                <Button onClick={() => this.props.favoritePlayer(id, full_name)}>Favorite Player</Button>
                 <Modal 
                     open={this.state.modalOpen}
                     onClose={this.handleClose}>
@@ -46,6 +46,9 @@ class NbaPlayer extends React.Component {
                         <p>Height: {height}</p>
                         <p>Weight: {weight}</p>
                         <p>Birthdate: {birthdate}</p>
+                    </Modal.Description>
+                    <Modal.Description>
+                        <Image centered size="medium" src={this.props.player.team.image}/>
                     </Modal.Description>
                     </Modal.Content>
                 </Modal>

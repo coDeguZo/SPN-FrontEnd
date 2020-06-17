@@ -1,13 +1,15 @@
 import React from 'react'
 import {Segment, Grid, Image, Dimmer, Loader} from 'semantic-ui-react'
 import NbaTeamPagePlayer from './NbaTeamPagePlayer.js'
+import Carousel from 'react-bootstrap/Carousel'
 
 export default class NbaTeamPage extends React.Component {
     state = {
         teamNews: [],
         filteredNews: [],
         articles: [],
-        loaded: false
+        loaded: false,
+        nbaNews: []
     }
 
     componentDidMount(){
@@ -35,9 +37,20 @@ export default class NbaTeamPage extends React.Component {
         .then(resp => resp.json())
         .then(data => {
             // debugger
+            this.setState({article: []})
             this.setState({articles: data.articles})}
             )
+
+        fetch("https://newsapi.org/v2/everything?domains=nba.com&pageSize=20&apiKey=0a224130cb72441e9926c7aa16abcfe1")
+        .then(resp => resp.json())
+        .then(data => {
+            this.setState({ nbaNews: data.articles })
+        })
     }
+
+    // changeArticlesState = (props) => {
+    //     this.setState({ articles: [] })
+    // }
 
     // teamNewss = () => {
     //     let filter = this.state.teamNews.filter(news => {
@@ -49,33 +62,95 @@ export default class NbaTeamPage extends React.Component {
     // }
 
     render(){
+        let news = this.state.nbaNews.slice(Math.max(this.state.nbaNews.length - 2, 2))
         const {id, image, market, name, sport_title, venue} = this.props.team
         return(
-            <div>
+            <div className="nba-team-page">
+                {/* Webscraped Articles */}
                 {this.state.loaded && this.state.articles.length > 0 ?
                 <>
                  <Segment>
                     <h1 className="spn-daily-news">{name}<img src={image} className="nba-image"></img> Team Page</h1>
                     {/* <Image src={process.env.PUBLIC_URL + '/SPN.png'} centered className="spn-daily-news"/> */}
                 </Segment>
-                <h1>{name} News</h1>
+                {/* Carousal For NBA News */}
+                <Grid divided='vertically'>
+                    <Grid.Row columns={2}>
+                        <Grid.Column >
+                            <h1 className="top-story-headline-home"> <strong>NBA</strong> </h1>
+                            <hr className="dividers hr-md-left-0"/>
+                        <Carousel interval={6000} className="nba-page-carousel-item">
+                        {this.state.nbaNews.map(article => (
+                            article.urlToImage !== null ?
+                            <Carousel.Item>
+                                    <img
+                                    className="d-block w-100"
+                                    src={article.urlToImage}
+                                    alt="First slide"
+                                    className="nba-page-carousel"
+                                    />
+                                    <Carousel.Caption>
+                                        <h3>{article.title}</h3>
+                                        <p>{article.description}</p>
+                                        <button onClick={() => window.open(article.url)}>Read More</button>
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                                :
+                                null
+                            ))}
+                            </Carousel>
+                        </Grid.Column>
+                        <Grid.Column>
+                            {/* <div>
+                            <h1 className="spn-daily-news">ⓈⓅⓃ NBA News</h1>
+                            </div> */}
+                            <Segment>
+                            <h4 className="top-story-headline-home"> <strong>Stories Around The League</strong> </h4>
+                            <hr className="dividers hr-md-left-0"/>
+                                <Grid>
+                                    {news.map(article => 
+                                    // article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ? 
+                                    <Grid.Row>
+                                        <Grid.Column>
+                                            <h4><strong>{article.title}</strong></h4>
+                                            <Image src={article.urlToImage} size="small" className="daily-news-image" centered="true" onClick={() => window.open(article.url)}/>
+                                            <p>{article.description}</p>
+                                            <hr className="divider hr-md-left-0"/>
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                    // :
+                                    // null
+                                    )}
+                                </Grid>
+                            </Segment>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+                <Segment>
+                    <Image src={image} size="small" centered/>
+                    <h1>News</h1>
+                </Segment>
                 <br /><br /><br />
                 <Grid>
                 {this.state.articles.map(article => {
                 return (<Grid.Row columns={2}>
                      <Grid.Column width={6} centered>
-                        <Image src={"https://www.rotoworld.com/" + article.image} centered/>
-                        <h4>{article.header}</h4>
-                        <p>{article.headline} </p>
+                         <Segment centered>
+                            <Image src={"https://www.rotoworld.com/" + article.image} centered/>
+                            <h4>{article.header}</h4>
+                        </Segment>
                      </Grid.Column>
                      <Grid.Column width={10}>
                         <br /><br />
+                        <p><strong>{article.headline}</strong></p>
                         {article.body}
                      </Grid.Column>
+                     <hr className="dividers hr-md-left-0"/> 
                  </Grid.Row>)
                 })}
                 </Grid>
                 <br /><br /><br /><br /><br />
+                <h1> {name} Players </h1>
                 <Grid relaxed='very' columns={5}>
                 {this.props.team.players.map(player => {
                     return (
@@ -87,7 +162,7 @@ export default class NbaTeamPage extends React.Component {
                 </Grid>
                 </>
                :
-               <div>
+                 <div>
                     <Loader size="massive" active indeterminate fluid className="loader-nba-page">Preparing Team Information</Loader>
                     <Image src='https://media.giphy.com/media/3o7b9DuZqNl0Aw2D1S/giphy.gif' fluid/>
                 </div>

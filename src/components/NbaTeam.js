@@ -46,7 +46,7 @@ export default class NbaTeam extends React.Component{
                         <p>Venue: {venue}</p>
                         <p>Market: {market}</p>
                         <p>League: {sport_title}</p>
-                        <Link to={"/nba-team-" + name}> {name} Team Page</Link>
+                        <Link to={"/nba/teams/" + name}> {name} Team Page</Link>
                     </Modal.Description>
                     </Modal.Content>
                 </Modal>
