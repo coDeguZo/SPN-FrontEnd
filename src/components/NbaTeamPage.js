@@ -77,8 +77,6 @@ export default class NbaTeamPage extends React.Component {
                 <Grid divided='vertically'>
                     <Grid.Row columns={2}>
                         <Grid.Column >
-                            <h1 className="top-story-headline-home"> <strong>NBA</strong> </h1>
-                            <hr className="dividers hr-md-left-0"/>
                         <Carousel interval={6000} className="nba-page-carousel-item">
                         {this.state.nbaNews.map(article => (
                             article.urlToImage !== null ?
@@ -101,9 +99,6 @@ export default class NbaTeamPage extends React.Component {
                             </Carousel>
                         </Grid.Column>
                         <Grid.Column>
-                            {/* <div>
-                            <h1 className="spn-daily-news">ⓈⓅⓃ NBA News</h1>
-                            </div> */}
                             <Segment>
                             <h4 className="top-story-headline-home"> <strong>Stories Around The League</strong> </h4>
                             <hr className="dividers hr-md-left-0"/>
@@ -126,14 +121,13 @@ export default class NbaTeamPage extends React.Component {
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
-                <Segment>
-                    <Image src={image} size="small" centered/>
-                    <h1>News</h1>
+                <Segment className="team-page-segment" style={{backgroundColor: "crimson"}}> 
+                    <Image src={image} size="medium" centered/>
                 </Segment>
-                <br /><br /><br />
+                {/* <br /><br /> */}
                 <Grid>
                 {this.state.articles.map(article => {
-                return (<Grid.Row columns={2}>
+                return (<Grid.Row columns={2} divided>
                      <Grid.Column width={6} centered>
                          <Segment centered>
                             <Image src={"https://www.rotoworld.com/" + article.image} centered/>
@@ -141,21 +135,51 @@ export default class NbaTeamPage extends React.Component {
                         </Segment>
                      </Grid.Column>
                      <Grid.Column width={10}>
-                        <br /><br />
-                        <p><strong>{article.headline}</strong></p>
-                        {article.body}
+                        {/* <br /><br /> */}
+                        <Segment>
+                            <h4> <u><strong>{article.headline}</strong></u> </h4>
+                            {article.body}
+                        </Segment>
                      </Grid.Column>
                      <hr className="dividers hr-md-left-0"/> 
                  </Grid.Row>)
                 })}
                 </Grid>
-                <br /><br /><br /><br /><br />
-                <h1> {name} Players </h1>
+                {/* <br /><br /> */}
+                <Segment style={{backgroundColor: "crimson"}}>
+                    <Grid>
+                        <Grid.Row columns={5} centered divided>
+                            <Grid.Column>
+                                <br />
+                                <h1 style={{fontFamily: "Impact"}}>{venue}</h1>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Image src={image} size="tiny" centered/>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <br />
+                                <h1 style={{fontFamily: "Impact"}}> {name}</h1>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Image src={image} size="tiny" centered/>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <br />
+                                <h1 style={{fontFamily: "Impact"}}>{market}</h1>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                {/* <Image src={image} size="tiny" centered/>
+                <p>Venue: {venue}</p>
+                <p>Market: {market}</p> */}
+                </Segment>
                 <Grid relaxed='very' columns={5}>
                 {this.props.team.players.map(player => {
                     return (
-                        <Grid.Column>
-                            <NbaTeamPagePlayer player={player} key={player.id}/>
+                        <Grid.Column centered>
+                            <Segment style={{background: `url(${image})`}}>
+                                <NbaTeamPagePlayer player={player} key={player.id}/>
+                            </Segment>
                         </Grid.Column>
                     )   
                 })}

@@ -41,9 +41,10 @@
 /* Nav Bar Container Info */
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: crimson;
   min-height: 100px;
   z-index: 15;
+  font-family: Impact;
 }
 
 .topnav a {
@@ -199,12 +200,14 @@
   text-align: center;
   font-size: 50px;
   color: black;
+  font-family: Impact;
 }
 
 .spn-nba-news {
   text-align: center;
   font-size: 50px;
   color: black;
+  font-family: Impact;
 }
 
 .daily-news-image{

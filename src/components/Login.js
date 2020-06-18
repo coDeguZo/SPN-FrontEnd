@@ -52,7 +52,7 @@ class Login extends React.Component{
             <div className="login-background">
                 <Grid textAlign='center' style={{ height: '100vh'}} verticalAlign='middle' className="user-login">
                 <Grid.Column style={{ maxWidth: 450 }}>
-                    <Header color='teal' textAlign='center'>
+                    <Header color='olive' textAlign='center'>
                     <h1 className="signup-font">ⓈⓅⓃ</h1>
                     {/* <h1>Welcome Back</h1> */}
                     </Header>

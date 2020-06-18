@@ -276,7 +276,7 @@ handleDeleteFavoriteTeam = (id) => {
           this.state.currentUser === null || localStorage.length === 0 ?
           <Signup loginUser={this.handleLogin}/>
           :
-          <Profile user={this.state.currentUser} edit={this.changeUserState} favsPlayers={this.state.favoritePlayers} favTeams={this.state.favoriteTeams} delete={this.findUserPlayer} deleteTeam={this.handleDeleteFavoriteTeam} bookmarks={this.state.bookmarked}/>
+          <Profile user={this.state.currentUser} edit={this.changeUserState} deleteProfile={this.deleteProfile} favsPlayers={this.state.favoritePlayers} favTeams={this.state.favoriteTeams} delete={this.findUserPlayer} deleteTeam={this.handleDeleteFavoriteTeam} bookmarks={this.state.bookmarked}/>
           )} />
           {/* Team Pages */}
           {this.state.teams.map(team => {

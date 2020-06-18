@@ -92,9 +92,6 @@ class Profile extends Component{
     render(){
         return(
             <div className="profile profile-background">
-                {/* <Segment>
-                    <h1 className="spn-daily-news">Profile Page</h1>
-                </Segment> */}
                 <Grid columns={3} divided>
                     <Grid.Row stretched>
                     <Grid.Column className="profile-user-card">
@@ -176,8 +173,9 @@ class Profile extends Component{
                     </Grid.Column>
                     {/* Second Column */}
                     <Grid.Column> 
-                    <br />
-                    <h1>Favorite Players</h1>
+                    {/* <br /> */}
+                    <Segment>
+                    <h1 style={{fontFamily: "Impact"}}>Favorite Players</h1>
                     {/* Favorite Players Ternary */}
                     {this.props.favsPlayers.length === 0 ?
                     <Card centered="true">
@@ -188,7 +186,7 @@ class Profile extends Component{
                         src="https://www.ctvnews.ca/polopoly_fs/1.4644391.1571407649!/httpImage/image.jpg_gen/derivatives/landscape_1020/image.jpg"
                     />
                         <Card.Description>
-                            <h1> No Favorite Players </h1>
+                            <h1 style={{fontFamily: "Impact"}}> No Favorite Players </h1>
                         </Card.Description>
                         </Card.Content>
                         <Card.Content>
@@ -223,12 +221,14 @@ class Profile extends Component{
                         ))}
                     </div>
                     }
+                    </Segment>
                     </Grid.Column>
                     <hr className="dividers hr-md-left-0"/>
                     {/* Column Three */}
                     <Grid.Column>
-                        <br />
-                        <h1>Favorite Teams</h1>
+                        {/* <br /> */}
+                        <Segment>
+                        <h1 style={{fontFamily: "Impact"}}>Favorite Teams</h1>
                         {/* Tenary for Favorite Players Or Not */}
                         {this.props.favTeams.length === 0 ?
                         <Card centered="true">
@@ -239,7 +239,7 @@ class Profile extends Component{
                             src="https://9b16f79ca967fd0708d1-2713572fef44aa49ec323e813b06d2d9.ssl.cf2.rackcdn.com/1140x_a10-7_cTC/20190108mfpinesports11-10-1548879899.jpg"
                         />
                             <Card.Description>
-                                <h1> No Followed Teams </h1>
+                                <h1 style={{fontFamily: "Impact"}}> No Favorite Teams </h1>
                             </Card.Description>
                             </Card.Content>
                             <Card.Content>
@@ -272,14 +272,16 @@ class Profile extends Component{
                         ))}
                         </div>
                         }
+                     </Segment>
                     </Grid.Column>
                     </Grid.Row>
                     {/* Bookmark Group */}
                     <Grid.Row className="profile-row-bookmarks">
                         <div className="padding-bookmarks">
-                            <h1> <u>Bookmarked Articles</u> </h1>
                             {this.state.bookmarks.length === 0 ?
                             <Segment>
+                            <h1 style={{fontFamily: "Impact"}}> <u>Bookmarked Articles</u> </h1>
+                            <br />
                             <Grid>
                                 <Grid.Row columns={2}>
                                     <Grid.Column >
@@ -290,7 +292,7 @@ class Profile extends Component{
                                         <br />
                                         <br />
                                         <br />
-                                        <h1> Empty Gym - No BookMarks</h1>
+                                        <h1 style={{fontFamily: "Impact"}}> Empty Gym - No BookMarks</h1>
                                     </Grid.Column>
                                 </Grid.Row>
                             </Grid>

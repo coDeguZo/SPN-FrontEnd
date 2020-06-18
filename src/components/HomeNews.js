@@ -82,26 +82,26 @@ class HomeNews extends React.Component {
 
     deleteBookmark = (title) => {
         if (this.props.user !== null){
-            swal({
-                icon: "info",
-                text: "Unbookmarking Under Construction"
+            // swal({
+            //     icon: "icon",
+            //     text: "Unbookmarking Under Construction"
+            // })
+            const id = this.state.userBookmarks.find(article => {
+                if (article.title === title) {
+                    return article.id
+            }})
+             console.log(id)
+            fetch(`http://localhost:3000/user_bookmarks/${id}`, {
+                method: "DELETE"
             })
-            // const id = this.state.userBookmarks.find(article => {
-            //     if (article.title === title) {
-            //         return article.id
-            // }})
-            //  console.log(id)
-            // fetch(`http://localhost:3000/user_bookmarks/${id.id}`, {
-            //     method: "DELETE"
-            // })
-            // .then(resp => resp.json())
-            // .then(data => {
-            //     this.setState({ bookmarked: !this.state.bookmarked})
-            //     swal({
-            //         icon: "info",
-            //         text: "Article No Longer Bookmarked"
-            //     })
-            // })
+            .then(resp => resp.json())
+            .then(data => {
+                this.setState({ bookmarked: !this.state.bookmarked})
+                swal({
+                    icon: "info",
+                    text: "Article No Longer Bookmarked"
+                })
+            })
         } else {
             swal({
                 icon: "info",

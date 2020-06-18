@@ -38,12 +38,21 @@ class Signup extends React.Component{
         })
     }
 
+    // myFunction = () => {
+    //     let x = document.getElementById("password");
+    //     if (x.type === "password") {
+    //       x.type = "text";
+    //     } else {
+    //       x.type = "password";
+    //     }
+    // }
+
     render(){
         return(
             <div className="user-signup"> 
             <Grid textAlign='center' style={{ height: '100vh'}} verticalAlign='middle' >
                 <Grid.Column style={{ maxWidth: 450 }}>
-                    <Header as='h1' color='teal' textAlign='center'>
+                    <Header as='h1' color='olive' textAlign='center'>
                     <h1 className="signup-font">ⓈⓅⓃ</h1>
                     </Header>
                     <Form 
@@ -76,12 +85,17 @@ class Signup extends React.Component{
                     />
                     <Form.Field
                         control={Input}
+                        type="password"
                         label='Password'
                         placeholder='Password'
                         id="password"
                         onChange={this.onChangeState}
                         required
                     />
+                    {/* <div class="ui checkbox">
+                        <input type="checkbox" class="hidden" readonly="" tabindex="0" onClick={() => this.myFunction} />
+                        <label>Show Password</label>
+                    </div> */}
                     <Button type="submit" >Login</Button>
 
                     {/* <Form.Field

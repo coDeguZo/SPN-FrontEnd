@@ -14,18 +14,18 @@ class VideoContainer extends React.Component{
         .then(resp => resp.json())
         .then(data => {
             this.setState({ videos: data.items})
-            this.setState({ original: data })
+            // this.setState({ original: data })
         })
     }
 
-    nextPage = (event) => {
-        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=espn&maxResults=10&${this.state.original.nextPageToken}&order=date&key=AIzaSyCQUDBxvd0_4aiLgI0w6zFa8QDO1wjQM0w`)
-        .then(resp => resp.json())
-        .then(data => {
-            this.setState({videos: data.items})
-            this.setState({original: data})
-        })
-    }
+    // nextPage = (event) => {
+    //     fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=espn&maxResults=10&${this.state.original.nextPageToken}&order=date&key=AIzaSyCQUDBxvd0_4aiLgI0w6zFa8QDO1wjQM0w`)
+    //     .then(resp => resp.json())
+    //     .then(data => {
+    //         this.setState({videos: data.items})
+    //         this.setState({original: data})
+    //     })
+    // }
 
 
 
@@ -33,13 +33,13 @@ class VideoContainer extends React.Component{
         return(
             <div className="video-container">
                 <Segment>
-                    <h1 className="spn-daily-news">ⓈⓅⓃ Sports Media</h1>
+                    <h1 className="spn-daily-news">ⓈⓅⓃ Media</h1>
                 </Segment>
                 {this.state.videos.map(video => {
                     return <Video video={video}/>
                 })}
                 <br /><br />
-                <Pagination defaultActivePage={1} totalPages={10} onPageChange={this.nextPage}/>
+                {/* <Pagination defaultActivePage={1} totalPages={10} /> */}
                 <br /> <br /><br />
             </div>
         )
