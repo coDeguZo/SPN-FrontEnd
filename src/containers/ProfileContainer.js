@@ -97,7 +97,7 @@ class Profile extends Component{
                     <Grid.Column className="profile-user-card">
                             <Segment style={{position: "fixed", zIndex:10}}>
                                 <Card className="profile-edit-button" centered="true" fluid="true" raised="false">
-                                    <Image src={this.props.user.image} wrapped ui={false} className="profile-user-image"/>
+                                    <img src={this.props.user.image} wrapped ui={false} className="profile-user-image"/>
                                     <Card.Content>
                                     <Card.Header>{this.props.user.name}</Card.Header>
                                     <Card.Meta>

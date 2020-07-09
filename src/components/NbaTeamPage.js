@@ -13,17 +13,12 @@ export default class NbaTeamPage extends React.Component {
     }
 
     componentDidMount(){
-        fetch("https://newsapi.org/v2/everything?domains=nba.com&pageSize=100&apiKey=0a224130cb72441e9926c7aa16abcfe1")
+        fetch(`https://newsapi.org/v2/everything?domains=nba.com&pageSize=100&apiKey=${process.env.REACT_APP_API_NEWS_NBA_KEY}`)
         .then(resp => resp.json())
         .then(data => {
             this.setState({ teamNews: data.articles, loaded: true })
         })
 
-        // fetch("https://www.nba.com/cavaliers/news")
-        // .then(resp => resp.json())
-        // .then(data => {
-        //     debugger
-        // })
         fetch(`http://localhost:3000/teams/${this.props.team.id}`, {
             method: 'POST',
             headers: {
@@ -36,30 +31,16 @@ export default class NbaTeamPage extends React.Component {
         })
         .then(resp => resp.json())
         .then(data => {
-            // debugger
             this.setState({article: []})
             this.setState({articles: data.articles})}
             )
 
-        fetch("https://newsapi.org/v2/everything?domains=nba.com&pageSize=20&apiKey=0a224130cb72441e9926c7aa16abcfe1")
+        fetch(`https://newsapi.org/v2/everything?domains=nba.com&pageSize=20&apiKey=${process.env.REACT_APP_API_NEWS_NBA_KEY}`)
         .then(resp => resp.json())
         .then(data => {
             this.setState({ nbaNews: data.articles })
         })
     }
-
-    // changeArticlesState = (props) => {
-    //     this.setState({ articles: [] })
-    // }
-
-    // teamNewss = () => {
-    //     let filter = this.state.teamNews.filter(news => {
-    //         // debugger
-    //         let pie = news.content.includes(this.props.team.name)
-    //         return pie
-    //     })
-    //     this.setState({ filteredNews: filter })
-    // }
 
     render(){
         let news = this.state.nbaNews.slice(Math.max(this.state.nbaNews.length - 2, 2))

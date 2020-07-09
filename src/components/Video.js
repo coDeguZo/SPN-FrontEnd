@@ -4,9 +4,6 @@ import { Grid } from "semantic-ui-react"
 
 
 class Video extends React.Component{
-    // state = {
-
-    // }
 
     render(){
         let opts = {
@@ -17,8 +14,8 @@ class Video extends React.Component{
               rel: 0,
               modestbranding: 1
             }}
-        const {channelTitle, description, publishedAt} = this.props.video.snippet
 
+        const {channelTitle, description, publishedAt} = this.props.video.snippet
         let url = "https://www.youtube.come/watch?v="
         let date = Date.parse(publishedAt)
         let newDate = Date(date).slice(0, 15)

@@ -10,7 +10,7 @@ class VideoContainer extends React.Component{
     }
 
     componentDidMount(){
-        fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&q=espn&maxResults=10&order=date&key=AIzaSyCQUDBxvd0_4aiLgI0w6zFa8QDO1wjQM0w")
+        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=espn&maxResults=10&order=date&key=${process.env.REACT_APP_YOUTUBE_KEY}`)
         .then(resp => resp.json())
         .then(data => {
             this.setState({ videos: data.items})
@@ -26,8 +26,6 @@ class VideoContainer extends React.Component{
     //         this.setState({original: data})
     //     })
     // }
-
-
 
     render(){
         return(

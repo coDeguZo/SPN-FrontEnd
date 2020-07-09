@@ -148,11 +148,11 @@
   width: 460px ;
 }
 
-.ui.card>.image>img{
+.ui.card>.image>.profile-user-image{
   height: 465px !important;
 }
 
-.ui.card>.image:not(.ui)>img{
+.ui.card>.image>img{
   height: auto !important;
 }
 

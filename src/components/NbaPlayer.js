@@ -14,8 +14,8 @@ class NbaPlayer extends React.Component {
         // debugger
         return(
             <div>
-                <Card onClick={this.handleOpen}>
-                    <Image src={player_image} wrapped ui={false}/>
+                <Card onClick={this.handleOpen} className="player-card">
+                    <Image src={player_image} wrapped ui={false} className="player-card"/>
                     <Card.Content>
                         <Card.Header>{full_name} {jersey_number}</Card.Header>
                     <Card.Meta>
