@@ -6,9 +6,9 @@ import swal from 'sweetalert';
 
 class Profile extends Component{
     state = {
-        name: "",
-        email: "",
-        image: "",
+        name: this.props.user.name,
+        email: this.props.user.email,
+        image: this.props.user.image,
         password: "",
         modalEditOpen: false,
         modalDeleteOpen: false,
@@ -115,11 +115,8 @@ class Profile extends Component{
                                     open={this.state.modalEditOpen}
                                     onClose={this.handleEditClose}
                                     centered={true}
-                                    // style={{height: 200}}
                                     >
-                                        {/* <Modal.Header>Select a Photo</Modal.Header> */}
-                                        <Modal.Content image>
-                                        {/* <Image wrapped size='medium' src='/images/avatar/large/rachel.png'/> */}
+                                        <Modal.Content>
                                         <Modal.Description>
                                             <Header>Edit Profile Information</Header>
                                             <Form
@@ -127,20 +124,16 @@ class Profile extends Component{
                                             >
                                                 <Form.Field>
                                                 <label>Full Name</label>
-                                                <input id="name" placeholder='Full Name' onChange={this.changeProfileInfoState} required/>
+                                                <input id="name" defaultValue={this.state.name} placeholder='Full Name' onChange={this.changeProfileInfoState} required/>
                                                 </Form.Field>
                                                 <Form.Field>
                                                 <label>Email</label>
-                                                <input id="email" placeholder='Email' onChange={this.changeProfileInfoState} required/>
+                                                <input id="email" defaultValue={this.state.email} placeholder='Email' onChange={this.changeProfileInfoState} required/>
                                                 </Form.Field>
                                                 <Form.Field>
-                                                <label>Profile Image</label>
-                                                <input id="image" placeholder='Profile Image' onChange={this.changeProfileInfoState} required/>
+                                                <label>Image URL</label>
+                                                <input id="image" defaultValue={this.state.image} placeholder='Profile Image' onChange={this.changeProfileInfoState} required/>
                                                 </Form.Field>
-                                                {/* <Form.Field>
-                                                <label>Password</label>
-                                                <input id="password" placeholder='Password' onChange={this.changeProfileInfo} required/>
-                                                </Form.Field> */}
                                                 <Button className="profile-edit-button" type='submit'>Submit</Button>
                                             </Form>
                                         </Modal.Description>

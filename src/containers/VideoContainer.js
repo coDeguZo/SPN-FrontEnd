@@ -39,7 +39,7 @@ class VideoContainer extends React.Component{
                     return <Video video={video}/>
                 })}
                 <br /><br />
-                {/* <Pagination defaultActivePage={1} totalPages={10} /> */}
+                <Pagination defaultActivePage={1} totalPages={10} />
                 <br /> <br /><br />
             </div>
         )

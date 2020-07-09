@@ -138,18 +138,22 @@
   background-size: cover;
 } 
 
-.profile {
-  /* max-height: 200px; */
-}
-
 .profile-background{
   background-color: whitesmoke;
   /* max-height: 200px; */
 }
 
 .profile-user-image{
-  height: 465px;
-  width: 460px;
+  height: 465px ;
+  width: 460px ;
+}
+
+.ui.card>.image>img{
+  height: 465px !important;
+}
+
+.ui.card>.image:not(.ui)>img{
+  height: auto !important;
 }
 
 .padding-bookmarks{
