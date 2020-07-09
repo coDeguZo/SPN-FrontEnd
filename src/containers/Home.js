@@ -1,7 +1,6 @@
 import React from 'react'
-import {Grid, Image, Button, Segment, Icon} from 'semantic-ui-react'
+import {Grid, Image, Segment} from 'semantic-ui-react'
 import Carousel from 'react-bootstrap/Carousel'
-import { Route, Link } from 'react-router-dom'
 import HomeNews from '../components/HomeNews'
 
 class Home extends React.Component{
@@ -30,7 +29,7 @@ class Home extends React.Component{
         // console.log(news)
         return(
             // className="my-carousel"
-            <div class="home-page-color">
+            <div className="home-page-color">
                 <Segment>
                     <h1 className="spn-daily-news">ⓈⓅⓃ Daily News</h1>
                     {/* <Image src={process.env.PUBLIC_URL + '/SPN.png'} centered className="spn-daily-news"/> */}
@@ -217,10 +216,10 @@ class Home extends React.Component{
                         <Grid>
                             {news.map(article => 
                             article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ? 
-                            <Grid.Row>
+                            <Grid.Row key={article.content}>
                                 <Grid.Column>
                                     <h4><strong>{article.title}</strong></h4>
-                                    <Image src={article.urlToImage} size="small" className="daily-news-image" centered="true" onClick={() => window.open(article.url)}/>
+                                    <Image src={article.urlToImage} size="small" className="daily-news-image" onClick={() => window.open(article.url)}/>
                                     <p>{article.description}</p>
                                     <hr className="dividers hr-md-left-0"/>
                                 </Grid.Column>

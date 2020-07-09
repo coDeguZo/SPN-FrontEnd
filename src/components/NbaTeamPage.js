@@ -1,5 +1,5 @@
 import React from 'react'
-import {Segment, Grid, Image, Dimmer, Loader} from 'semantic-ui-react'
+import {Segment, Grid, Image, Loader} from 'semantic-ui-react'
 import NbaTeamPagePlayer from './NbaTeamPagePlayer.js'
 import Carousel from 'react-bootstrap/Carousel'
 
@@ -44,14 +44,14 @@ export default class NbaTeamPage extends React.Component {
 
     render(){
         let news = this.state.nbaNews.slice(Math.max(this.state.nbaNews.length - 2, 2))
-        const {id, image, market, name, sport_title, venue} = this.props.team
+        const {image, market, name, venue} = this.props.team
         return(
             <div className="nba-team-page">
                 {/* Webscraped Articles */}
                 {this.state.loaded && this.state.articles.length > 0 ?
                 <>
                  <Segment>
-                    <h1 className="spn-daily-news">{name}<img src={image} className="nba-image"></img> Team Page</h1>
+                    <h1 className="spn-daily-news">{name}<img alt="nba" src={image} className="nba-image"></img> Team Page</h1>
                     {/* <Image src={process.env.PUBLIC_URL + '/SPN.png'} centered className="spn-daily-news"/> */}
                 </Segment>
                 {/* Carousal For NBA News */}

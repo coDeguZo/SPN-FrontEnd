@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Segment, Header, Form, Image, Input, Button} from 'semantic-ui-react'
+import {Grid, Segment, Header, Form, Input, Button} from 'semantic-ui-react'
 import swal from 'sweetalert';
 
 

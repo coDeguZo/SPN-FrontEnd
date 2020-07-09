@@ -283,14 +283,14 @@ handleDeleteFavoriteTeam = (id) => {
             // debugger
             return (
               <Route exact path={"/nba/teams/" + team.name} render={() => (
-                <NbaTeamPage team={team}/>
+                <NbaTeamPage key={team.id} team={team}/>
               )} />
             )
           })}
           {/* Video Container */}
-          <Route exact path="/highlights" render={() => {
+          {/* <Route exact path="/highlights" render={() => {
             return <VideoContainer /> 
-          }}/>
+          }}/> */}
         </Switch>
         </div>
         {/* <Footer /> */}

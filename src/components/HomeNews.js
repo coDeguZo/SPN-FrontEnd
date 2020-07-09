@@ -1,5 +1,5 @@
 import React from "react"
-import {Grid, Button, Image, Icon} from "semantic-ui-react"
+import {Button, Icon} from "semantic-ui-react"
 import swal from 'sweetalert';
 
 class HomeNews extends React.Component {
@@ -7,23 +7,7 @@ class HomeNews extends React.Component {
         userBookmarks: [],
         bookmarked: false,
     }
-
-    // articleBookmarked = (id) => {
-    //     // console.log(id)
-    //     this.setState({ bookmarked: !this.state.bookmarked})
-    //     if (this.state.bookmarked === false){
-    //         swal({
-    //             icon: "success",
-    //             text: "Bookmarked Article"
-    //         })
-    //     } else {
-    //         swal({
-    //             icon: "info",
-    //             text: "Article No Longer Bookmarked"
-    //         })
-    //     }
-    // }
-
+    
     componentDidMount(){
         fetch("http://localhost:3000/user_bookmarks")
         .then(resp => resp.json())

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Grid, Image, Icon, Button, Card, Segment, Sticky, Modal, Header, Form, GridColumn} from 'semantic-ui-react'
+import {Grid, Image, Icon, Button, Card, Segment, Modal, Header, Form} from 'semantic-ui-react'
 // import Card from 'react-bootstrap/Card'
 import Bookmarks from '../components/Bookmarks'
 import swal from 'sweetalert';

@@ -11,7 +11,6 @@ class NbaPlayer extends React.Component {
 
     render(){
         const {id, full_name, player_image, college, height, weight, position, jersey_number, birthdate} = this.props.player
-        // debugger
         return(
             <div>
                 <Card onClick={this.handleOpen} className="player-card">
@@ -26,10 +25,10 @@ class NbaPlayer extends React.Component {
                     </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
-                    <a>
+                    {/* <a> */}
                         <Icon name='basketball ball' />
                         NBA Team: {this.props.player.team.name}
-                    </a>
+                    {/* </a> */}
                     </Card.Content>
                 </Card>
                 <Button onClick={() => this.props.favoritePlayer(id, full_name)}>Favorite Player</Button>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Search, Dropdown, Segment } from 'semantic-ui-react'
+import { Grid, Dropdown, Segment } from 'semantic-ui-react'
 import NbaTeam from './NbaTeam'
 
 export default class NbaTeams extends React.Component{

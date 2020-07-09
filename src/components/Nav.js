@@ -25,7 +25,7 @@ const Nav = (props) => {
                     })
                 }}>Sports Media</Link>}
                 <div className="topnav-right">
-                    <Link onClick={() => {
+                    <Link to="" onClick={() => {
                         return swal({
                             icon: "info",
                             text: "About Page Coming Soon!"

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, GridColumn} from 'semantic-ui-react'
+import {Grid} from 'semantic-ui-react'
 
 class About extends React.Component{
     render(){
@@ -11,7 +11,7 @@ class About extends React.Component{
                 <Grid>
                     <Grid.Row columns={3}>
                         <Grid.Column textAlign="center">
-                        <img src={process.env.PUBLIC_URL + '/IMG_2939.jpeg'} className="about-user-image"></img>
+                        <img alt="user" src={process.env.PUBLIC_URL + '/IMG_2939.jpeg'} className="about-user-image"></img>
                         <br />
                         <br />
                         <p>Nduka-Eze Uzoma Ariguzo</p>

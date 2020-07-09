@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Card, Image, Icon, Button, Modal, Header } from 'semantic-ui-react'
+import { Card, Image, Modal, Header } from 'semantic-ui-react'
 
 class NbaTeamPagePlayer extends Component {
     state = {
@@ -10,7 +10,7 @@ class NbaTeamPagePlayer extends Component {
     handleClose = () => this.setState({ modalOpen: false })
 
     render(){
-        const {birthdate, college, full_name, height, jersey_number, league, player_image, weight, team_draft_id, position} = this.props.player
+        const {birthdate, college, full_name, height, jersey_number, player_image, weight, position} = this.props.player
         return(
             <div>
                 <Card onClick={this.handleOpen}>
