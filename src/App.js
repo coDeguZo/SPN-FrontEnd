@@ -6,13 +6,13 @@ import Signup from './components/Signup'
 import Profile from './containers/ProfileContainer'
 import Home from "./containers/Home"
 import About from './components/About'
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 // import { createStore } from 'redux'
 import NbaContainer from './containers/NbaContainer'
 import NbaPlayerIndex from './components/NbaPlayerIndex'
 import NbaTeamsIndex from './components/NbaTeamsIndex'
 import NbaTeamPage from './components/NbaTeamPage'
-import VideoContainer from './containers/VideoContainer'
+// import VideoContainer from './containers/VideoContainer'
 import { Route, Switch, Redirect} from 'react-router-dom'
 import swal from 'sweetalert';
 
@@ -34,7 +34,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/leagues")
+    fetch("https://spn-backend.herokuapp.com/leagues")
     .then(resp => resp.json())
     .then(data => {
       const nba = data.find(league => league.name === "NBA")
@@ -42,7 +42,7 @@ class App extends React.Component {
       this.setState( { leagues: data })
     })
     
-    fetch("http://localhost:3000/teams")
+    fetch("https://spn-backend.herokuapp.com/teams")
     .then(resp => resp.json())
     .then(data => {
       const teams = data.filter(team => team.sport_title === "NBA" )
@@ -51,7 +51,7 @@ class App extends React.Component {
       this.setState({ teams: data })
     })
 
-    fetch("http://localhost:3000/players")
+    fetch("https://spn-backend.herokuapp.com/players")
     .then(resp => resp.json())
     .then(data => {
       this.setState({ players: data })
@@ -59,7 +59,7 @@ class App extends React.Component {
     })
 
     if(localStorage.getItem("token")){
-    fetch("http://localhost:3000/login", {
+    fetch("https://spn-backend.herokuapp.com/login", {
       headers: { "Authenticate": localStorage.token }
     })
     .then(resp => resp.json())
@@ -70,7 +70,7 @@ class App extends React.Component {
       console.log("No Token Found")
     }
 
-    fetch("http://localhost:3000/user_bookmarks")
+    fetch("https://spn-backend.herokuapp.com/user_bookmarks")
         .then(resp => resp.json())
         .then(data => {
           // debugger
@@ -84,14 +84,14 @@ class App extends React.Component {
 
   handleLogin = (user) => {
     // Fetching User_Player data for User signed in
-    fetch("http://localhost:3000/user_players")
+    fetch("https://spn-backend.herokuapp.com/user_players")
     .then(resp => resp.json())
     .then(data => {
       let userInfo = data.filter(user_player => this.state.currentUser.id === user_player.user_id)
       this.setState({ favoritePlayers: userInfo })
     })
     // Fetching User_Team data for User signed in
-    fetch("http://localhost:3000/user_teams")
+    fetch("https://spn-backend.herokuapp.com/user_teams")
     .then(resp => resp.json())
     .then(data => {
       let userInfo = data.filter(user_team => this.state.currentUser.id === user_team.user_id)
@@ -110,7 +110,7 @@ class App extends React.Component {
 
   deleteProfile = () => {
     debugger
-    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, {
+    fetch(`https://spn-backend.herokuapp.com/users/${this.state.currentUser.id}`, {
         method: "DELETE"
     })
     .then(resp => resp.json())
@@ -127,17 +127,17 @@ class App extends React.Component {
 }
 
   findUserPlayer = (id) => {
-    fetch("http://localhost:3000/user_players")
+    fetch("https://spn-backend.herokuapp.com/user_players")
     .then(resp => resp.json())
-    .then(data => data.find(userPlayer => {
-      if (userPlayer.id === id){
-        this.handleDeleteFavorite(userPlayer.id)
+    .then(data => {
+      let foundPlayer = data.find(userPlayer => userPlayer.id === id)
+        this.handleDeleteFavorite(foundPlayer.id)
         swal({
           icon: "info",
           text: "Player Unfollowed"
       })
       }
-    }))
+    )
   }
 
   favoriteNbaPlayer = (id, name) => {
@@ -158,7 +158,7 @@ class App extends React.Component {
         user_id: this.state.currentUser.id,
         player_id: id
     }
-    fetch("http://localhost:3000/user_players", {
+    fetch("hhttps://spn-backend.herokuapp.com/user_players", {
         method: "POST",
         headers: {"Content-Type": "application/json", "Accept": "application/json"},
         body: JSON.stringify(obj)
@@ -175,7 +175,7 @@ class App extends React.Component {
 }
 
   handleDeleteFavorite = (id) => {
-    fetch(`http://localhost:3000/user_players/${id}`, {
+    fetch(`https://spn-backend.herokuapp.com/user_players/${id}`, {
       method: "DELETE"
     })
     .then(resp => resp.json())
@@ -203,7 +203,7 @@ class App extends React.Component {
         user_id: this.state.currentUser.id,
         team_id: id
     }
-    fetch("http://localhost:3000/user_teams", {
+    fetch("https://spn-backend.herokuapp.com/user_teams", {
         method: "POST",
         headers: {"Content-Type": "application/json", "Accept": "application/json"},
         body: JSON.stringify(obj)
@@ -220,7 +220,7 @@ class App extends React.Component {
 }
 
 handleDeleteFavoriteTeam = (id) => {
-  fetch(`http://localhost:3000/user_teams/${id}`, {
+  fetch(`https://spn-backend.herokuapp.com/user_teams/${id}`, {
     method: "DELETE"
   })
   .then(resp => resp.json())
@@ -282,7 +282,7 @@ handleDeleteFavoriteTeam = (id) => {
           {this.state.teams.map(team => {
             // debugger
             return (
-              <Route exact path={"/nba/teams/" + team.name} render={() => (
+              <Route exact path={"/nba/teams/" + team.name} key={team.id} render={() => (
                 <NbaTeamPage key={team.id} team={team}/>
               )} />
             )

@@ -28,10 +28,8 @@ export default class NbaTeam extends React.Component{
                     </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
-                    <a>
                         <Icon name='basketball ball' />
                         League: {sport_title}
-                    </a>
                     </Card.Content>
                 </Card>
                 <Button onClick={() => this.props.favoriteTeam(id, name)}>Follow Team</Button>

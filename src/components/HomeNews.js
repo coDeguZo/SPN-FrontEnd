@@ -9,17 +9,15 @@ class HomeNews extends React.Component {
     }
     
     componentDidMount(){
-        fetch("http://localhost:3000/user_bookmarks")
+        fetch("https://spn-backend.herokuapp.com/user_bookmarks")
         .then(resp => resp.json())
         .then(data => {
             this.setState({ userBookmarks: data })
             if (this.props.user !== null){
-                this.state.userBookmarks.find(article => {
-                    // debugger
-                    if (article.title === this.props.article.title && this.props.user.id === parseInt(article.user_id)){
-                        this.setState({bookmarked: true})
+                if (this.state.userBookmarks.find(article => (article.title === this.props.article.title && this.props.user.id === parseInt(article.user_id)))){
+                    this.setState({bookmarked: true})
                  }
-            })} 
+            } 
             else {
                this.setState({bookmarked: false})
             }
@@ -41,7 +39,7 @@ class HomeNews extends React.Component {
             user_id: this.props.user.id
         }
 
-        fetch("http://localhost:3000/user_bookmarks", {
+        fetch("http://spn-backend.herokuapp.com/user_bookmarks", {
             method: "POST",
             headers: {"Content-Type": "application/json", "Accept": "application/json"},
             body: JSON.stringify(obj)
@@ -95,7 +93,7 @@ class HomeNews extends React.Component {
     }
 
     render(){
-        const {urlToImage, title, description, url, author, publishedAt} = this.props.article
+        const {title, description, url, publishedAt} = this.props.article
         // let timeChange = publishedAt.toLocaleTimeString('en-US')
         // debugger
 

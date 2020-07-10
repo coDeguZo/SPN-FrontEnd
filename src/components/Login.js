@@ -23,7 +23,7 @@ class Login extends React.Component{
             email: this.state.email,
             password: this.state.password
         }
-        fetch("http://localhost:3000/login", {
+        fetch("https://spn-backend.herokuapp.com/login", {
             method: "POST",
             headers: {"Content-Type": "application/json", "Accept": "application/json"},
             body: JSON.stringify(obj)

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {Grid, Image, Table, Segment, Button} from 'semantic-ui-react'
+import {Grid, Image, Segment, Button} from 'semantic-ui-react'
 import Carousel from 'react-bootstrap/Carousel'
 class NbaContainer extends React.Component {
     state = {
@@ -17,13 +17,13 @@ class NbaContainer extends React.Component {
     }
 
     render(){
-        var item = this.state.news[Math.floor(Math.random() * this.state.news.length)];
+        // var item = this.state.news[Math.floor(Math.random() * this.state.news.length)];
         let news = this.state.news.slice(Math.max(this.state.news.length - 3, 3))
         // debugger
         return(
             <div className="nba-container">
                  <Segment>
-                    <h1 className="spn-nba-news">NBA<img src={this.props.league.logo_img} className="nba-image"></img> News</h1>
+                    <h1 className="spn-nba-news">NBA<img alt="nba" src={this.props.league.logo_img} className="nba-image"></img> News</h1>
                     {/* <Image src={process.env.PUBLIC_URL + '/SPN.png'} centered className="spn-daily-news"/> */}
                 </Segment>
                 <Grid divided='vertically'>
@@ -39,7 +39,7 @@ class NbaContainer extends React.Component {
                             article.urlToImage !== null ?
                             <Carousel.Item>
                                     <img
-                                    className="d-block w-100"
+                                    // className="d-block w-100"
                                     src={article.urlToImage}
                                     alt="First slide"
                                     className="nba-container-carousel"
@@ -91,7 +91,7 @@ class NbaContainer extends React.Component {
                                 // debugger
                                return player.full_name === "Carmelo Anthony" || player.full_name === "Zion Williamson" || player.full_name === "Anthony Davis" || player.full_name === "LeBron James" || player.full_name === "Damian Lillard" ? 
                                         <div>
-                                            <img src={player.player_image}></img>
+                                            <img alt="player" src={player.player_image}></img>
                                             <h3>{player.full_name}</h3>
                                         </div>
                                 : 
@@ -113,7 +113,7 @@ class NbaContainer extends React.Component {
                                 // debugger
                                return team.name === "Lakers" || team.name === "Pelicans" || team.name === "Bucks" || team.name === "Clippers" || team.name === "Rockets" ? 
                                         <div>
-                                            <img className="nba-team-logo-nba-container" src={team.image}></img>
+                                            <img alt="team" className="nba-team-logo-nba-container" src={team.image}></img>
                                             <h3>{team.name}</h3>
                                         </div>
                                 : 

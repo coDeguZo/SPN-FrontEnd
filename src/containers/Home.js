@@ -27,6 +27,7 @@ class Home extends React.Component{
     render(){
         let news = this.state.topHeadlines.slice(0, 3)
         // console.log(news)
+        let homeImage = "home-image"
         return(
             // className="my-carousel"
             <div className="home-page-color">
@@ -47,133 +48,133 @@ class Home extends React.Component{
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         </Carousel.Caption> */}
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/Curry.jpg'}
                             alt="Second slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Third */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src="https://static01.nyt.com/images/2014/11/23/sports/GIANTS-slide-PAJ0/GIANTS-slide-PAJ0-superJumbo.jpg"
                             alt="third slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Fourth */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/Lebron-Shot.jpg'}
                             alt="fourth slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Fifth */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/Lebron-Wade.jpg'}
                             alt="fifth slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Sixth */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/Kyrie.jpeg'}
                             alt="sixth slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Seventh */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/Derrick-Rose.jpg'}
                             alt="seventh slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Eigth */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/Lebron.jpg'}
                             alt="eighth slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Ninth */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/Rings.jpg'}
                             alt="ninth slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Tenth */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/MJ-Winning.jpg'}
                             alt="tenth slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Eleven */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/new_1.jpg'}
                             alt="tenth slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Twelve */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/new_2.jpg'}
                             alt="tenth slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Thirteen */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/new_3.jpg'}
                             alt="tenth slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* FourTeen */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/new_4.jpeg'}
                             alt="tenth slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Fifteen */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/new_5.jpeg'}
                             alt="tenth slide"
-                            className="home-image"
+                            className={homeImage}
                             />
                         </Carousel.Item>
                         {/* Sixteen */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/new_6.png'}
                             alt="tenth slide"
                             className="home-image"
@@ -182,7 +183,7 @@ class Home extends React.Component{
                         {/* Seventeen */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/new_7.jpg'}
                             alt="tenth slide"
                             className="home-image"
@@ -191,7 +192,7 @@ class Home extends React.Component{
                         {/* Eighteen */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/new_8.jpeg'}
                             alt="tenth slide"
                             className="home-image"
@@ -200,7 +201,7 @@ class Home extends React.Component{
                         {/* Nineteen */}
                         <Carousel.Item>
                             <img
-                            className="d-block w-100"
+                            // className="d-block w-100"
                             src={process.env.PUBLIC_URL + '/Dream-Team.jpg'}
                             alt="tenth slide"
                             className="home-image"
@@ -232,8 +233,8 @@ class Home extends React.Component{
                     </Grid.Column>
                     </Grid.Row>
                     {this.state.news.map(article => {
-                    return article.urlToImage !== null && article.content !== "" && article.urlToImage !== "https://a1.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fespn_logos%2Fespn_red.png" || article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ?
-                    <Grid.Row columns={2}>
+                    return article.urlToImage !== null && article.content !== "" && article.urlToImage !== "https://a1.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fespn_logos%2Fespn_red.png" && article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ?
+                    <Grid.Row key={article.content} columns={2}>
                         <Grid.Column width={6}>
                             <Image className="home-news-image" src={article.urlToImage} />
                             {article.author !== null ? 

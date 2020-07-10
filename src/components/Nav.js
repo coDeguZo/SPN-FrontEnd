@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {Image} from 'semantic-ui-react'
+// import {Image} from 'semantic-ui-react'
 import swal from 'sweetalert';
 
 const Nav = (props) => {
@@ -18,7 +18,7 @@ const Nav = (props) => {
                     </div> */}
                 </div>
                 <Link to="/nba/players">Players</Link>
-                {props.user === null || localStorage.length === 0 ? null : <Link onClick={() => {
+                {props.user === null || localStorage.length === 0 ? null : <Link to="/" onClick={() => {
                     return swal({
                         icon: "info",
                         text: "Sports Highlights Coming Soon!"

@@ -16,7 +16,7 @@ class Profile extends Component{
     }
 
     componentDidMount(){
-        fetch("http://localhost:3000/user_bookmarks")
+        fetch("https://spn-backend.herokuapp.com/user_bookmarks")
         .then(resp => resp.json())
         .then(data => {
           let filtered = data.filter(bookmark => bookmark.user.id === this.props.user.id)
@@ -41,7 +41,7 @@ class Profile extends Component{
             image: this.state.image
         }
         // debugger
-        fetch(`http://localhost:3000/users/${this.props.user.id}`, {
+        fetch(`https://spn-backend.herokuapp.com/users/${this.props.user.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json", "Accept": "application/json"},
             body: JSON.stringify(obj)
@@ -63,12 +63,8 @@ class Profile extends Component{
                 icon: "info",
                 text: "Article No Longer Bookmarked"
             })
-            const id = this.state.bookmarks.find(article => {
-                if (article.title === title) {
-                    return article.id
-            }})
-             console.log(id)
-            fetch(`http://localhost:3000/user_bookmarks/${id.id}`, {
+            const article = this.state.bookmarks.find(article => article.title === title)
+            fetch(`https://spn-backend.herokuapp.com/user_bookmarks/${article.id}`, {
                 method: "DELETE"
             })
             .then(resp => resp.json())
@@ -97,7 +93,7 @@ class Profile extends Component{
                     <Grid.Column className="profile-user-card">
                             <Segment style={{position: "fixed", zIndex:10}}>
                                 <Card className="profile-edit-button" centered="true" fluid="true" raised="false">
-                                    <img src={this.props.user.image} wrapped ui={false} className="profile-user-image"/>
+                                    <img alt="profile" src={this.props.user.image} wrapped ui={false} className="profile-user-image"/>
                                     <Card.Content>
                                     <Card.Header>{this.props.user.name}</Card.Header>
                                     <Card.Meta>
@@ -278,7 +274,7 @@ class Profile extends Component{
                             <Grid>
                                 <Grid.Row columns={2}>
                                     <Grid.Column >
-                                        <img className="profile-news-image" src="https://s.hdnux.com/photos/76/01/54/16259844/3/rawImage.jpg" ></img>
+                                        <img alt="profile-news" className="profile-news-image" src="https://s.hdnux.com/photos/76/01/54/16259844/3/rawImage.jpg" ></img>
                                     </Grid.Column>
                                     <Grid.Column>
                                         <br />

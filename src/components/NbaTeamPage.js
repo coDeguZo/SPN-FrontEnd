@@ -19,7 +19,7 @@ export default class NbaTeamPage extends React.Component {
             this.setState({ teamNews: data.articles, loaded: true })
         })
 
-        fetch(`http://localhost:3000/teams/${this.props.team.id}`, {
+        fetch(`http://spn-backend.herokuapp.com/teams/${this.props.team.id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -31,7 +31,6 @@ export default class NbaTeamPage extends React.Component {
         })
         .then(resp => resp.json())
         .then(data => {
-            this.setState({article: []})
             this.setState({articles: data.articles})}
             )
 
@@ -63,7 +62,7 @@ export default class NbaTeamPage extends React.Component {
                             article.urlToImage !== null ?
                             <Carousel.Item>
                                     <img
-                                    className="d-block w-100"
+                                    // className="d-block w-100"
                                     src={article.urlToImage}
                                     alt="First slide"
                                     className="nba-page-carousel"

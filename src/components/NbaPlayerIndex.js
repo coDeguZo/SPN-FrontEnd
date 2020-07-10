@@ -1,7 +1,7 @@
 import React from 'react'
 import NbaPlayer from './NbaPlayer'
 import { Grid, Search, Dropdown, Segment } from 'semantic-ui-react'
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 
 
 
@@ -60,7 +60,7 @@ class NbaPlayerIndex extends React.Component {
         return(
             <div className="nba-player-index">
                  <Segment>
-                    <h1 className="spn-nba-news">NBA<img src={this.props.league.logo_img} className="nba-image"></img> Players</h1>
+                    <h1 className="spn-nba-news">NBA<img alt="nba" src={this.props.league.logo_img} className="nba-image"></img> Players</h1>
                     {/* <Image src={process.env.PUBLIC_URL + '/SPN.png'} centered className="spn-daily-news"/> */}
                 </Segment>
                 <br />

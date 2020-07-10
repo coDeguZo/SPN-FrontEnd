@@ -1,10 +1,10 @@
 import React from 'react'
 import {Grid, Button, Segment, Icon} from 'semantic-ui-react'
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 
 export default class Bookmarks extends React.Component{
     render(){
-        let {urlToImage, author, content, description, title, url, published_at} = this.props.mark
+        let {urlToImage, author, description, title, url, published_at} = this.props.mark
         let date = Date.parse(published_at)
         let newDate = Date(date).slice(0, 15)
         return(
@@ -13,7 +13,7 @@ export default class Bookmarks extends React.Component{
                 <Grid>
                     <Grid.Row columns={2}>
                         <Grid.Column >
-                            <img className="profile-news-image" src={urlToImage} ></img>
+                            <img alt="profile-news" className="profile-news-image" src={urlToImage} ></img>
                             {author !== null ? 
                             <p>By:{author}</p>
                             :

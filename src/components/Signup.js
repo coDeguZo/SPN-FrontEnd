@@ -22,7 +22,7 @@ class Signup extends React.Component{
             image: this.state.image,
             password: this.state.password
         }
-        fetch("http://localhost:3000/users", {
+        fetch("https://spn-backend.herokuapp.com/users", {
             method: "POST",
             headers: {"Content-Type": "application/json", "Accept": "application/json"},
             body: JSON.stringify(obj)

@@ -29,7 +29,7 @@ export default class NbaTeams extends React.Component{
             <div className="nba-team-index">
                 {/* <h1>NBA teams</h1> */}
                 <Segment>
-                    <h1 className="spn-nba-news">NBA<img src={this.props.league.logo_img} className="nba-image"></img> Teams</h1>
+                    <h1 className="spn-nba-news">NBA<img alt="nba" src={this.props.league.logo_img} className="nba-image"></img> Teams</h1>
                     {/* <Image src={process.env.PUBLIC_URL + '/SPN.png'} centered className="spn-daily-news"/> */}
                 </Segment>
                 <Grid relaxed='very' columns={1}>
