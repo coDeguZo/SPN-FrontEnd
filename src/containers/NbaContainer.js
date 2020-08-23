@@ -20,7 +20,7 @@ class NbaContainer extends React.Component {
         // var item = this.state.news[Math.floor(Math.random() * this.state.news.length)];
         let news = this.state.news.slice(Math.max(this.state.news.length - 3, 3))
         // debugger
-        return(
+        return (
             <div className="nba-container">
                  <Segment>
                     <h1 className="spn-nba-news">NBA<img alt="nba" src={this.props.league.logo_img} className="nba-image"></img> News</h1>

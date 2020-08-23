@@ -86,7 +86,7 @@ class Profile extends Component{
 
 
     render(){
-        return(
+        return (
             <div className="profile profile-background">
                 <Grid columns={3} divided>
                     <Grid.Row stretched>

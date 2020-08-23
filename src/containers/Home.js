@@ -28,7 +28,7 @@ class Home extends React.Component{
         let news = this.state.topHeadlines.slice(0, 3)
         // console.log(news)
         let homeImage = "home-image"
-        return(
+        return (
             // className="my-carousel"
             <div className="home-page-color">
                 <Segment>
