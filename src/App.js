@@ -73,7 +73,6 @@ class App extends React.Component {
     fetch("https://spn-backend.herokuapp.com/user_bookmarks")
         .then(resp => resp.json())
         .then(data => {
-          // debugger
           this.setState({bookmarked: data})
         })
   }
@@ -109,7 +108,6 @@ class App extends React.Component {
   }
 
   deleteProfile = () => {
-    debugger
     fetch(`https://spn-backend.herokuapp.com/users/${this.state.currentUser.id}`, {
         method: "DELETE"
     })
