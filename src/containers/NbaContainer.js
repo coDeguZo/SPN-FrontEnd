@@ -36,11 +36,11 @@ class NbaContainer extends React.Component {
                             <hr className="dividers hr-md-left-0"/>
                         <Carousel interval={6000} className="nba-carousel-item">
                         {this.state.news.map(article => (
-                            article.urlToImage !== null ?
+                            article.url_to_image !== null ?
                             <Carousel.Item>
                                     <img
                                     // className="d-block w-100"
-                                    src={article.urlToImage}
+                                    src={article.url_to_image}
                                     alt="First slide"
                                     className="nba-container-carousel"
                                     />
@@ -68,7 +68,7 @@ class NbaContainer extends React.Component {
                                     <Grid.Row>
                                         <Grid.Column>
                                             <h4><strong>{article.title}</strong></h4>
-                                            <Image src={article.urlToImage} size="small" className="daily-news-image" centered="true" onClick={() => window.open(article.url)}/>
+                                            <Image src={article.url_to_image} size="small" className="daily-news-image" centered="true" onClick={() => window.open(article.url)}/>
                                             <p>{article.description}</p>
                                             <hr className="divider hr-md-left-0"/>
                                         </Grid.Column>
