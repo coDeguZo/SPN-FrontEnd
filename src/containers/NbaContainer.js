@@ -9,10 +9,10 @@ class NbaContainer extends React.Component {
     }
 
     componentDidMount(){
-        fetch(`https://newsapi.org/v2/everything?domains=nba.com&pageSize=20&apiKey=${process.env.REACT_APP_API_NEWS_NBA_KEY}`)
+        fetch(`https://spn-backend2.herokuapp.com/home_news`)
         .then(resp => resp.json())
         .then(data => {
-            this.setState({ news: data.articles })
+            this.setState({ news: articles })
         })
     }
 
