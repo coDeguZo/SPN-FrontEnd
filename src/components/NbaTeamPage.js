@@ -13,10 +13,10 @@ export default class NbaTeamPage extends React.Component {
     }
 
     componentDidMount(){
-        fetch(`https://newsapi.org/v2/everything?domains=nba.com&pageSize=100&apiKey=${process.env.REACT_APP_API_NEWS_NBA_KEY}`)
+        fetch(`https://spn-backend2.herokuapp.com/home_news`)
         .then(resp => resp.json())
         .then(data => {
-            this.setState({ teamNews: data.articles, loaded: true })
+            this.setState({ teamNews: data, loaded: true })
         })
 
         fetch(`http://spn-backend2.herokuapp.com/teams/${this.props.team.id}`, {
@@ -31,10 +31,10 @@ export default class NbaTeamPage extends React.Component {
         })
         .then(resp => resp.json())
         .then(data => {
-            this.setState({articles: data.articles})}
+            this.setState({articles: data})}
             )
 
-        fetch(`https://newsapi.org/v2/everything?domains=nba.com&pageSize=20&apiKey=${process.env.REACT_APP_API_NEWS_NBA_KEY}`)
+        fetch(`https://spn-backend2.herokuapp.com/home_news`)
         .then(resp => resp.json())
         .then(data => {
             this.setState({ nbaNews: data.articles })
@@ -59,11 +59,11 @@ export default class NbaTeamPage extends React.Component {
                         <Grid.Column >
                         <Carousel interval={6000} className="nba-page-carousel-item">
                         {this.state.nbaNews.map(article => (
-                            article.urlToImage !== null ?
+                            article.url_to_image !== null ?
                             <Carousel.Item>
                                     <img
                                     // className="d-block w-100"
-                                    src={article.urlToImage}
+                                    src={article.url_to_image}
                                     alt="First slide"
                                     className="nba-page-carousel"
                                     />
@@ -88,7 +88,7 @@ export default class NbaTeamPage extends React.Component {
                                     <Grid.Row>
                                         <Grid.Column>
                                             <h4><strong>{article.title}</strong></h4>
-                                            <Image src={article.urlToImage} size="small" className="daily-news-image" centered="true" onClick={() => window.open(article.url)}/>
+                                            <Image src={article.url_to_image} size="small" className="daily-news-image" centered="true" onClick={() => window.open(article.url)}/>
                                             <p>{article.description}</p>
                                             <hr className="divider hr-md-left-0"/>
                                         </Grid.Column>
