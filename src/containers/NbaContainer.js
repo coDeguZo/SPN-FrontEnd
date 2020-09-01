@@ -12,7 +12,7 @@ class NbaContainer extends React.Component {
         fetch(`https://spn-backend2.herokuapp.com/home_news`)
         .then(resp => resp.json())
         .then(data => {
-            this.setState({ news: articles })
+            this.setState({ news: data })
         })
     }
 
