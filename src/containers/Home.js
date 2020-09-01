@@ -11,16 +11,16 @@ class Home extends React.Component{
 
     componentDidMount(){
         // Changec the HTTP Protocol
-        fetch("https://newsapi.org/v2/everything?domains=espn.com&pageSize=50&apiKey=f44ccf725ca9471596da059a5defc2fc")
+        fetch("https://spn-backend2.herokuapp.com/home_news")
         .then(resp => resp.json())
         .then( data => {
-            this.setState({ news: data.articles })
+            this.setState({ news: data })
         })
         // Changec the HTTP Protocol
-        fetch("https://newsapi.org/v2/top-headlines?sources=espn&pageSize=5&apiKey=f44ccf725ca9471596da059a5defc2fc")
+        fetch("https://spn-backend2.herokuapp.com/home_news")
         .then(resp => resp.json())
         .then(data => {
-            this.setState({ topHeadlines: data.articles })
+            this.setState({ topHeadlines: data })
         })
     }
 
@@ -217,11 +217,11 @@ class Home extends React.Component{
                     <hr className="dividers hr-md-left-0"/>
                         <Grid>
                             {news.map(article => 
-                            article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ? 
+                            article.url_to_image.split("").slice(article.url_to_image.length - 3).join("") !== "png" ? 
                             <Grid.Row key={article.content}>
                                 <Grid.Column>
                                     <h4><strong>{article.title}</strong></h4>
-                                    <Image src={article.urlToImage} size="small" className="daily-news-image" onClick={() => window.open(article.url)}/>
+                                    <Image src={article.url_to_image} size="small" className="daily-news-image" onClick={() => window.open(article.url)}/>
                                     <p>{article.description}</p>
                                     <hr className="dividers hr-md-left-0"/>
                                 </Grid.Column>
@@ -234,10 +234,10 @@ class Home extends React.Component{
                     </Grid.Column>
                     </Grid.Row>
                     {this.state.news.map(article => {
-                    return article.urlToImage !== null && article.content !== "" && article.urlToImage !== "https://a1.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fespn_logos%2Fespn_red.png" && article.urlToImage.split("").slice(article.urlToImage.length - 3).join("") !== "png" ?
+                    return article.url_to_image !== null && article.content !== "" && article.url_to_Image !== "https://a1.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fespn_logos%2Fespn_red.png" && article.url_to_image.split("").slice(article.url_to_image.length - 3).join("") !== "png" ?
                     <Grid.Row key={article.content} columns={2}>
                         <Grid.Column width={6}>
-                            <Image className="home-news-image" src={article.urlToImage} />
+                            <Image className="home-news-image" src={article.url_to_image} />
                             {article.author !== null ? 
                             <p>By: {article.author}</p>
                             :

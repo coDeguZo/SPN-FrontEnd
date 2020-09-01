@@ -16,7 +16,7 @@ class Profile extends Component{
     }
 
     componentDidMount(){
-        fetch("https://spn-backend.herokuapp.com/user_bookmarks")
+        fetch("https://spn-backend2.herokuapp.com/user_bookmarks")
         .then(resp => resp.json())
         .then(data => {
           let filtered = data.filter(bookmark => bookmark.user.id === this.props.user.id)
@@ -41,7 +41,7 @@ class Profile extends Component{
             image: this.state.image
         }
         // debugger
-        fetch(`https://spn-backend.herokuapp.com/users/${this.props.user.id}`, {
+        fetch(`https://spn-backend2.herokuapp.com/users/${this.props.user.id}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json", "Accept": "application/json"},
             body: JSON.stringify(obj)
@@ -64,7 +64,7 @@ class Profile extends Component{
                 text: "Article No Longer Bookmarked"
             })
             const article = this.state.bookmarks.find(article => article.title === title)
-            fetch(`https://spn-backend.herokuapp.com/user_bookmarks/${article.id}`, {
+            fetch(`https://spn-backend2.herokuapp.com/user_bookmarks/${article.id}`, {
                 method: "DELETE"
             })
             .then(resp => resp.json())

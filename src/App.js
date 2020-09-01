@@ -34,7 +34,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://spn-backend.herokuapp.com/leagues")
+    fetch("https://spn-backend2.herokuapp.com/leagues")
     .then(resp => resp.json())
     .then(data => {
       const nba = data.find(league => league.name === "NBA")
@@ -42,7 +42,7 @@ class App extends React.Component {
       this.setState( { leagues: data })
     })
     
-    fetch("https://spn-backend.herokuapp.com/teams")
+    fetch("https://spn-backend2.herokuapp.com/teams")
     .then(resp => resp.json())
     .then(data => {
       const teams = data.filter(team => team.sport_title === "NBA" )
@@ -51,7 +51,7 @@ class App extends React.Component {
       this.setState({ teams: data })
     })
 
-    fetch("https://spn-backend.herokuapp.com/players")
+    fetch("https://spn-backend2.herokuapp.com/players")
     .then(resp => resp.json())
     .then(data => {
       this.setState({ players: data })
@@ -59,7 +59,7 @@ class App extends React.Component {
     })
 
     if(localStorage.getItem("token")){
-    fetch("https://spn-backend.herokuapp.com/login", {
+    fetch("https://spn-backend2.herokuapp.com/login", {
       headers: { "Authenticate": localStorage.token }
     })
     .then(resp => resp.json())
@@ -70,7 +70,7 @@ class App extends React.Component {
       console.log("No Token Found")
     }
 
-    fetch("https://spn-backend.herokuapp.com/user_bookmarks")
+    fetch("https://spn-backend2.herokuapp.com/user_bookmarks")
         .then(resp => resp.json())
         .then(data => {
           this.setState({bookmarked: data})
@@ -83,14 +83,14 @@ class App extends React.Component {
 
   handleLogin = (user) => {
     // Fetching User_Player data for User signed in
-    fetch("https://spn-backend.herokuapp.com/user_players")
+    fetch("https://spn-backend2.herokuapp.com/user_players")
     .then(resp => resp.json())
     .then(data => {
       let userInfo = data.filter(user_player => this.state.currentUser.id === user_player.user_id)
       this.setState({ favoritePlayers: userInfo })
     })
     // Fetching User_Team data for User signed in
-    fetch("https://spn-backend.herokuapp.com/user_teams")
+    fetch("https://spn-backend2.herokuapp.com/user_teams")
     .then(resp => resp.json())
     .then(data => {
       let userInfo = data.filter(user_team => this.state.currentUser.id === user_team.user_id)
@@ -108,7 +108,7 @@ class App extends React.Component {
   }
 
   deleteProfile = () => {
-    fetch(`https://spn-backend.herokuapp.com/users/${this.state.currentUser.id}`, {
+    fetch(`https://spn-backend2.herokuapp.com/users/${this.state.currentUser.id}`, {
         method: "DELETE"
     })
     .then(resp => resp.json())
@@ -125,7 +125,7 @@ class App extends React.Component {
 }
 
   findUserPlayer = (id) => {
-    fetch("https://spn-backend.herokuapp.com/user_players")
+    fetch("https://spn-backend2.herokuapp.com/user_players")
     .then(resp => resp.json())
     .then(data => {
       let foundPlayer = data.find(userPlayer => userPlayer.id === id)
@@ -156,7 +156,7 @@ class App extends React.Component {
         user_id: this.state.currentUser.id,
         player_id: id
     }
-    fetch("hhttps://spn-backend.herokuapp.com/user_players", {
+    fetch("hhttps://spn-backend2.herokuapp.com/user_players", {
         method: "POST",
         headers: {"Content-Type": "application/json", "Accept": "application/json"},
         body: JSON.stringify(obj)
@@ -173,7 +173,7 @@ class App extends React.Component {
 }
 
   handleDeleteFavorite = (id) => {
-    fetch(`https://spn-backend.herokuapp.com/user_players/${id}`, {
+    fetch(`https://spn-backend2.herokuapp.com/user_players/${id}`, {
       method: "DELETE"
     })
     .then(resp => resp.json())
@@ -201,7 +201,7 @@ class App extends React.Component {
         user_id: this.state.currentUser.id,
         team_id: id
     }
-    fetch("https://spn-backend.herokuapp.com/user_teams", {
+    fetch("https://spn-backend2.herokuapp.com/user_teams", {
         method: "POST",
         headers: {"Content-Type": "application/json", "Accept": "application/json"},
         body: JSON.stringify(obj)
@@ -218,7 +218,7 @@ class App extends React.Component {
 }
 
 handleDeleteFavoriteTeam = (id) => {
-  fetch(`https://spn-backend.herokuapp.com/user_teams/${id}`, {
+  fetch(`https://spn-backend2.herokuapp.com/user_teams/${id}`, {
     method: "DELETE"
   })
   .then(resp => resp.json())
