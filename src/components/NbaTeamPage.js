@@ -19,7 +19,7 @@ export default class NbaTeamPage extends React.Component {
             this.setState({ teamNews: data, loaded: true })
         })
 
-        fetch(`http://spn-backend2.herokuapp.com/teams/${this.props.team.id}`, {
+        fetch(`https://spn-backend2.herokuapp.com/teams/${this.props.team.id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export default class NbaTeamPage extends React.Component {
         fetch(`https://spn-backend2.herokuapp.com/home_news`)
         .then(resp => resp.json())
         .then(data => {
-            this.setState({ nbaNews: data.articles })
+            this.setState({ nbaNews: data })
         })
     }
 
