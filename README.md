@@ -18,9 +18,11 @@ Clone down the SPN Frontend Repo.
 (Optionally check ou the website at https://sportsnewsnetwork.netlify.app/)
 
 ## Reducer Tests
-Run reducer tests by running npm test.
+Run Home and App tests by running npm test.
 
-If you do not have enzyme test suite installed. Run npm i --save-dev enzyme enzyme-adapter-react-16
+If you do not have enzyme test suite installed run:  npm i --save-dev enzyme enzyme-adapter-react-16
+
+You may have to run: npm install.  This will allow test to run!
 
 ## Other Dependencies
 
