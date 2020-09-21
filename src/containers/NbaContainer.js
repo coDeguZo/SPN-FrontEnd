@@ -85,7 +85,7 @@ class NbaContainer extends React.Component {
                         <Grid.Column>
                             <h1>Top NBA Players</h1>
                             <br />
-                            <Grid divided='horizontally' centered>
+                            <Grid /*divided='horizontally'*/ centered>
                                    <Grid.Row columns={3}>
                             {this.props.players.map(player => {
                                 // debugger
@@ -107,7 +107,7 @@ class NbaContainer extends React.Component {
                         <Grid.Column>
                             <h1>Top NBA Teams</h1>
                             <br />
-                            <Grid divided='horizontally' centered>
+                            <Grid /*divided='horizontally'*/ centered>
                                    <Grid.Row columns={3}>
                             {this.props.teams.map(team => {
                                 // debugger

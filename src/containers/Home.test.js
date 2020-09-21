@@ -52,8 +52,6 @@ describe('Home', () => {
     const carousel = wrapper.find(Carousel.Item)
     expect(carousel.length).toEqual(18)
   })
-
-  
 })
 
 // import React from 'react';

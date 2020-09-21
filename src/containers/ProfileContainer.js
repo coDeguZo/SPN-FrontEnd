@@ -92,8 +92,8 @@ class Profile extends Component{
                     <Grid.Row stretched>
                     <Grid.Column className="profile-user-card">
                             <Segment style={{position: "fixed", zIndex:10}}>
-                                <Card className="profile-edit-button" centered="true" fluid="true" raised="false">
-                                    <img alt="profile" src={this.props.user.image} wrapped ui={false} className="profile-user-image"/>
+                                <Card className="profile-edit-button" centered={true} fluid={true} raised={false}>
+                                    <img alt="profile" src={this.props.user.image} wrapped='false' className="profile-user-image"/>
                                     <Card.Content>
                                     <Card.Header>{this.props.user.name}</Card.Header>
                                     <Card.Meta>
@@ -137,7 +137,7 @@ class Profile extends Component{
                                     </Modal>
                                     {/* Delete Profile */}
                                     <Modal 
-                                    trigger={<button type="button" class="btn btn-outline-danger" id="profile-button" onClick={this.handleDeleteOpen} >Delete Profile</button>}
+                                    trigger={<button type="button" className="btn btn-outline-danger" id="profile-button" onClick={this.handleDeleteOpen} >Delete Profile</button>}
                                     open={this.state.modalDeleteOpen}
                                     onClose={this.handleDeleteClose}
                                     centered={true}
@@ -167,7 +167,7 @@ class Profile extends Component{
                     <h1 style={{fontFamily: "Impact"}}>Favorite Players</h1>
                     {/* Favorite Players Ternary */}
                     {this.props.favsPlayers.length === 0 ?
-                    <Card centered="true">
+                    <Card centered={true}>
                     <Card.Content>
                     <Image
                         // floated='center'
@@ -220,7 +220,7 @@ class Profile extends Component{
                         <h1 style={{fontFamily: "Impact"}}>Favorite Teams</h1>
                         {/* Tenary for Favorite Players Or Not */}
                         {this.props.favTeams.length === 0 ?
-                        <Card centered="true">
+                        <Card centered={true}>
                         <Card.Content>
                         <Image
                             // floated='center'
@@ -290,7 +290,7 @@ class Profile extends Component{
                             <div>
                             {this.state.bookmarks.map(mark => {
                                 return(
-                                    <div>
+                                    <div key={mark.id}>
                                         <Bookmarks mark={mark} key={mark.id} unBookmark={this.deleteBookmark}/>
                                     </div>
                                 ) 
